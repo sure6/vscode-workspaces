@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.0/jquery.min.js"
+        integrity="sha512-synHs+rLg2WDVE9U0oHVJURDCiqft60GcWOW7tXySy8oIr0Hjl3K9gv7Bq/gSj4NDVpc5vmsNkMGGJ6t2VpUMA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-layout/1.4.3/jquery.layout.min.js"
+        integrity="sha512-ivkojFS3Hd6k9wRLJqWXwOXVWh3Ygr3VKpcxB8m6FCn95pZE2tt0vFP3tTa08OW8PvPLfJk97pk6n3jAyvEA3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/jquery-ui.min.js"
+        integrity="sha512-zGO3p/zHGECEORxiayBZFvTdX1h6TZXA8MiqEmslNOFsp62E6r4GqnUGSpQU/NH9BFvZVo4cLXRcZEeaJas4bQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="./js/action.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var myLayout = $('body').layout({
+                applyDefaultStyles: false,
+                north__closable: false,
+                south__closable: false,
+            });
+            $("#tabs").tabs();
+
+            // read layout 'options'
+            var is_west_resizable = myLayout.options.north.resizable;
+            var north_maxHeight = myLayout.options.north.maxSize;
+            console.log(is_west_resizable);
+            console.log(north_maxHeight);
+
+            // get layout 'state'
+            var is_west_open = myLayout.state.north.isOpen;
+            var north_size = myLayout.state.north.size;
+            console.log(is_west_open);
+            console.log(north_size);
+
+            // layout methods
+            myLayout.show("north", openPane = true);
+            myLayout.sizePane("north", 100);
+
+            // layout utilities
+            // myLayout.addPinBtn("#myPinButton", "north");
+            // myLayout.allowOverflow("north");
+        });
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-layout/1.4.3/layout-default.css"
+        integrity="sha512-dwZBC9FHzeeVasOdF1imVYUYn8k9UGdESyUZTz0gJRWN6HYRJQIgycP6kC+z97pq86do9SW+rTZm8W9cExDYYQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.0/themes/base/jquery-ui.min.css"
+        integrity="sha512-7SEm66ON8SD1EOF3k/R+wfMxjnYWkRzAltLg2QT8zf6Nph7zXjY3IiemDz37/l1UN1CL/WpLEglfEQWdnKyBKA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <div class="ui-layout-north">North</div>
+    <div class="ui-layout-center">
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Nunc tincidunt</a></li>
+                <li><a href="#tabs-2">Proin dolor</a></li>
+                <li><a href="#tabs-3">Aenean lacinia</a></li>
+            </ul>
+            <div id="tabs-1">
+                <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec
+                    sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem.
+                    Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula
+                    eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam
+                    molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum.
+                    Phasellus ipsum. Nunc tristique tempus lectus.</p>
+            </div>
+            <div id="tabs-2">
+                <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id
+                    nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros
+                    molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula
+                    in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis.
+                    Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat.
+                    Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod
+                    felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
+            </div>
+            <div id="tabs-3">
+                <p>Mauris eleifend est et turpis. Duis id erat. Suspendisse potenti. Aliquam vulputate, pede vel
+                    vehicula accumsan, mi neque rutrum erat, eu congue orci lorem eget lorem. Vestibulum non ante. Class
+                    aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Fusce sodales.
+                    Quisque eu urna vel enim commodo pellentesque. Praesent eu risus hendrerit ligula tempus pretium.
+                    Curabitur lorem enim, pretium nec, feugiat nec, luctus a, lacus.</p>
+                <p>Duis cursus. Maecenas ligula eros, blandit nec, pharetra at, semper at, magna. Nullam ac lacus. Nulla
+                    facilisi. Praesent viverra justo vitae neque. Praesent blandit adipiscing velit. Suspendisse
+                    potenti. Donec mattis, pede vel pharetra blandit, magna ligula faucibus eros, id euismod lacus dolor
+                    eget odio. Nam scelerisque. Donec non libero sed nulla mattis commodo. Ut sagittis. Donec nisi
+                    lectus, feugiat porttitor, tempor ac, tempor vitae, pede. Aenean vehicula velit eu tellus interdum
+                    rutrum. Maecenas commodo. Pellentesque nec elit. Fusce in lacus. Vivamus a libero vitae lectus
+                    hendrerit hendrerit.</p>
+            </div>
+        </div>
+    </div>
+    <div class="ui-layout-west">West</div>
+    <div class="ui-layout-south">South</div>
+</body>
+
+</html>

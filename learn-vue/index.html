@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue learning</title>
+    <link rel="shortcut icon" href="https://cdn.iconscout.com/icon/free/png-256/vue-282497.png" type="image/x-icon" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>hello, {{name.toUpperCase()}}</h1>
+    </div>
+
+    <div id="element-1">
+        <h1>插值语法</h1>
+        <p>hi, {{title.toUpperCase()}}</p>
+        <hr>
+        <h1>指令语法</h1>
+        <a v-bind:href="url.toUpperCase()">start</a>
+        <a :href="url">start</a>
+        <hr>
+        <h1>数据绑定</h1>
+        单向数据绑定: <input type="text" v-bind:value="address">
+        双向数据绑定: <input type="text" v-model="address">
+        双向数据绑定2: <input type="text" v-model:value="address">
+    </div>
+    <hr>
+    <div id="element-2">
+        <h1>hello, {{name}},{{1+4}}, {{Date.now()}}</h1>
+    </div>
+    <hr>
+    <div id="element-3">
+        <h1>school name: {{name}}</h1>
+        <h1>school address: {{address}}</h1>
+    </div>
+    <hr>
+    <div id="element-4">
+       
+    </div>
+
+
+
+    <script>
+        // forbidden production tips in console
+        Vue.config.productionTip = false;
+
+        // create Vue instance
+        new Vue({
+            el: '#root',
+            data: {
+                name: 'Vue'
+            }
+        });
+    </script>
+    <!-- 数据绑定 -->
+    <script>
+        // create Vue instance
+        new Vue({
+            el: '#element-1',
+            data: {
+                title: 'Vue',
+                url: "https://www.google.com",
+                address: "vue",
+
+            }
+        });
+    </script>
+    <!-- el 与 data 的几种写法 -->
+    <script>
+        // create Vue instance
+        const vm = new Vue({
+            // el: '#element-2',
+            // data:{
+            //     name:'UOW',
+            // } 
+            // data: function () {
+            //     console.log('@@@',this);
+            //     return {
+            //         name:"UOW",
+            //     }
+            // }
+            // data:  () =>{
+            //     console.log('@@@',this);
+            //     return {
+            //         name:"UOW",
+            //     }
+            // }
+            data() {
+                console.log('@@@',this);
+                return {
+                    name:"UOW",
+                }
+            }
+        });
+        console.log(vm);
+        vm.$mount('#element-2');
+    </script>
+    <!-- MVVM -->
+    <script>
+        new Vue({
+            el:"#element-3",
+            data:{
+                name:"uow",
+                address:"11 Northfields Ave."
+            }
+        });
+    </script>
+    <!-- 数据代理 -->
+    <script>
+        let age=18;
+        let person={
+            name:"zhangsan",
+            sex:"male",
+        };
+
+        Object.defineProperty(person,'age',{
+            // value:18,
+            // enumerable:true, // 控制属性是否可枚举, 默认为false
+            // writable:true, // 控制属性是否可修改, 默认为false
+            // configurable:true, //控制属性是否可被删除, 默认为false
+            get:function(){
+                return age;
+            },
+            set:function(value){
+                age=value;
+            },
+        });
+
+        console.log(Object.keys(person));
+        console.log(person);
+    </script>
+    <!-- vue中数据代理 -->
+
+</body>
+
+</html>
