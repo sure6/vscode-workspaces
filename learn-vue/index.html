@@ -55,8 +55,20 @@
         <!-- <button @click=" isHot = !isHot;x++">点击切换</button> -->
         <button @click="changeWeather">点击切换</button>
         <!-- <button @click="alert(1)">点击切换</button> -->
+        <hr>
+        <h3>a的值: {{numbers.a}}</h3>
+        <button @click="numbers.a++">a+1</button>
+        <hr>
+        <h3>b的值: {{numbers.b}}</h3>
+        <button @click="numbers.b++">b+1</button>
     </div>
-
+    <hr>
+    <div id="element-7">
+        firstName: <input type="text" v-model="firstname">
+        lastName: <input type="text" v-model="lastname">
+        fullName: <span>{{fullname}}</span>
+    </div>
+    <hr>
 
     <script>
         // forbidden production tips in console
@@ -167,7 +179,7 @@
             }
         });
     </script>
-
+<!-- 计算属性 -->
     <script>
         new Vue({
             el: "#element-5",
@@ -182,12 +194,17 @@
             }
         })
     </script>
+    <!-- 属性监视器 -->
     <script>
-        new Vue({
+       const vm1 = new Vue({
             el:"#element-6",
             data:{
                 isHot:true,
                 x:1,
+                numbers:{
+                    a:1,
+                    b:1,
+                }
             },
             computed:{
                 info:function(){
@@ -201,11 +218,55 @@
                 }
             },
             watch:{
-                isHot:{
-                    immediate:true,
-                    handler(newValue,oldValue){
-                        console.log("isHot is modified",newValue,oldValue);
-                    },
+                // isHot:{
+                //     immediate:true,
+                //     handler(newValue,oldValue){
+                //         console.log("isHot is modified",newValue,oldValue);
+                //     },
+                // },
+                //简写
+                // isHot(newValue,oldValue){
+                //         console.log("isHot is modified",newValue,oldValue);
+                // },
+                // 检测多级结构中某种属性
+                // "numbers.a":{
+                //     handler(){
+                //         console.log("numbers改变了");
+                //     }
+                // }
+                numbers:{
+                    deep:true,
+                    handler(){
+                        console.log("numbers改变了");
+                    }
+                }
+            }
+        });
+        vm1.$watch("isHot", function(newValue,oldValue){
+            console.log("isHot is modified",newValue,oldValue);
+        });
+    </script>
+<!-- 监听属性 -->
+    <script>
+        new Vue({
+            el:"#element-7",
+            data:{
+                firstname:"zhang",
+                "lastname":"san",
+                fullname:"zhang-san"
+            },
+            watch:{
+                // computed 属性不能实现异步任务,因为有return的缘故
+                firstname(val){
+                    // 这里的函数必须写箭头函数,因为定时器由js引擎来调, 如果写成普通函数就会出现this指向window
+                    setTimeout(()=>{
+                        console.log(this);
+                        this.fullname=val+"-"+this.lastname;
+                    },1000)
+                    
+                },
+                lastname(val){
+                    this.fullname=this.firstname+"-"+val;
                 }
             }
         })
