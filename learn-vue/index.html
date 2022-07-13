@@ -39,7 +39,9 @@
     </div>
     <hr>
     <div id="element-4">
-       
+        <button v-on:click="showInfo">begain</button>
+        <button @click="showInfo2(66,$event)">begain2</button>
+        <a href="https://www.google.com" @click.prevent="showInfo">popen uow</a>
     </div>
 
 
@@ -90,9 +92,9 @@
             //     }
             // }
             data() {
-                console.log('@@@',this);
+                console.log('@@@', this);
                 return {
-                    name:"UOW",
+                    name: "UOW",
                 }
             }
         });
@@ -102,31 +104,31 @@
     <!-- MVVM -->
     <script>
         new Vue({
-            el:"#element-3",
-            data:{
-                name:"uow",
-                address:"11 Northfields Ave."
+            el: "#element-3",
+            data: {
+                name: "uow",
+                address: "11 Northfields Ave."
             }
         });
     </script>
     <!-- 数据代理 -->
     <script>
-        let age=18;
-        let person={
-            name:"zhangsan",
-            sex:"male",
+        let age = 18;
+        let person = {
+            name: "zhangsan",
+            sex: "male",
         };
 
-        Object.defineProperty(person,'age',{
+        Object.defineProperty(person, 'age', {
             // value:18,
             // enumerable:true, // 控制属性是否可枚举, 默认为false
             // writable:true, // 控制属性是否可修改, 默认为false
             // configurable:true, //控制属性是否可被删除, 默认为false
-            get:function(){
+            get: function () {
                 return age;
             },
-            set:function(value){
-                age=value;
+            set: function (value) {
+                age = value;
             },
         });
 
@@ -134,6 +136,26 @@
         console.log(person);
     </script>
     <!-- vue中数据代理 -->
+    <!--  事件处理 -->
+    <!-- 事件修饰符 -->
+    <script>
+        new Vue({
+            el: "#element-4",
+            methods: {
+                showInfo(event) {
+                    alert("start")
+                    console.log(this);
+                },
+                showInfo2(number,a) {
+                    alert("start2"+number);
+                    console.log(a);
+                    
+                },
+            
+            }
+        });
+    </script>
+    
 
 </body>
 
