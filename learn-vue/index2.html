@@ -252,13 +252,19 @@
                     // this.persons[0].age=50;
                     // this.persons[0].sex="male";
 
-                    this.persons[0]={ id: "001", name: "马老师", age: 50, sex: "男" }
-  
+                    // dom会变化, vue不会解析
+                    // this.persons[0]={ id: "001", name: "马老师", age: 50, sex: "男" }
+                    this.persons.splice(0,1,{ id: "001", name: "马老师", age: 50, sex: "男" })
+                    // 第一个参数不允许是vm对象
+                    // Vue.set(this.persons[0],'sex','female')
+                    // this.$set(this.persons[0],'age','29')
+
                 }
             },
 
         })
 
+        
     </script>
 </body>
 
