@@ -43,7 +43,19 @@
         <button @click="showInfo2(66,$event)">begain2</button>
         <a href="https://www.google.com" @click.prevent="showInfo">popen uow</a>
     </div>
-
+    <hr>
+    <div id="element-5">
+        firstName: <input type="text" v-model="firstname">
+        lastName: <input type="text" v-model="lastname">
+        fullName: <span>{{fullname}}</span>
+    </div>
+    <hr>
+    <div id="element-6">
+        <h2>今天天气很{{info}}. {{x}}</h2>
+        <!-- <button @click=" isHot = !isHot;x++">点击切换</button> -->
+        <button @click="changeWeather">点击切换</button>
+        <!-- <button @click="alert(1)">点击切换</button> -->
+    </div>
 
 
     <script>
@@ -146,16 +158,50 @@
                     alert("start")
                     console.log(this);
                 },
-                showInfo2(number,a) {
-                    alert("start2"+number);
+                showInfo2(number, a) {
+                    alert("start2" + number);
                     console.log(a);
-                    
+
                 },
-            
+
             }
         });
     </script>
-    
+
+    <script>
+        new Vue({
+            el: "#element-5",
+            data: {
+                firstname: "zhang",
+                lastname: "san"
+            },
+            computed: {
+                fullname: function () {
+                    return this.firstname + "-" + this.lastname;
+                }
+            }
+        })
+    </script>
+    <script>
+        new Vue({
+            el:"#element-6",
+            data:{
+                isHot:true,
+                x:1,
+            },
+            computed:{
+                info:function(){
+                    return this.isHot?"炎热":"凉爽"
+                }
+            },
+            methods:{
+                changeWeather: function (){
+                    this.isHot = !this.isHot;
+                    this.x++;
+                }
+            }
+        })
+    </script>
 
 </body>
 
