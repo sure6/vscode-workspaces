@@ -54,7 +54,7 @@
         <div class="basic" :style="{fontSize: fsize+'px'}">{{name}}</div>
         <div class="basic" :style="[styleObj,styleObj2]">{{name}}</div>
     </div>
-
+    <hr> 
     <div id="element9">
         <!-- <h2 v-show="false">welcome to {{name}}</h2>
         <h2 v-show="1 === 2">welcome to {{name}}</h2>
@@ -122,6 +122,14 @@
                 <li v-for="(star, index) in filStars" :key="star.id">{{star.name}}-{{star.sex}}-{{star.age}}</li>
             </ul>
         </div>
+    </div>
+    <hr>
+    <div id="element10">
+        <h2>Person List</h2>
+        <button @click="updataMei">更新马冬梅的信息</button>
+        <ul>
+            <li v-for="(item, index) in persons" :key="item.id">{{item.name}}-{{item.sex}}-{{item.age}}</li>
+        </ul>
     </div>
 
     <script>
@@ -227,6 +235,30 @@
                 }
             }
         })
+        
+        const vm = new Vue({
+            el:"#element10",
+            data:{
+                persons:[
+                    { id: "001", name: "马冬梅", age: 30, sex: "女" },
+                    { id: "002", name: "周冬雨", age: 31, sex: "女" },
+                    { id: "003", name: "周杰伦", age: 18, sex: "男" },
+                    { id: "004", name: "温兆伦", age: 19, sex: "男" },
+                ],
+            },
+            methods:{
+                updataMei(){
+                    // this.persons[0].name="马老师";
+                    // this.persons[0].age=50;
+                    // this.persons[0].sex="male";
+
+                    this.persons[0]={ id: "001", name: "马老师", age: 50, sex: "男" }
+  
+                }
+            },
+
+        })
+
     </script>
 </body>
 
