@@ -99,15 +99,29 @@
         <ul>
             <!-- <li v-for="(person,index) in persons" :key="index">{{person}}-{{index}} <input type="text"> </li> -->
             <!-- 如果不写key vue会自动使用index来标识 -->
-            <li v-for="(person,index) in persons" :key="index">{{person}}-{{index}} <input type="text" :value="person.name"> </li>
+            <li v-for="(person,index) in persons" :key="index">{{person}}-{{index}} <input type="text"
+                    :value="person.name"> </li>
         </ul>
         <hr>
-        <h2>人员列表</h2>
-        <input type="text" placeholder="请输入明星" v-model="keywords">
-        <button ></button>
-        <ul>
-            <li v-for="(star, index) in filStars2" :key="star.id">{{star.name}}-{{star.sex}}-{{star.age}}</li>
-        </ul>
+        <button @click="isUseComputed">采用计算属性来实现</button>
+        <div v-if="flag">
+            <h2>采用计算属性的人员列表</h2>
+            <input type="text" placeholder="请输入明星" v-model="keywords">
+            <button @click="sortType=2">年龄升序</button>
+            <button @click="sortType=1">年龄降序</button>
+            <button @click="sortType=0">原顺序</button>
+            <ul>
+                <li v-for="(star, index) in filStars2" :key="star.id">{{star.name}}-{{star.sex}}-{{star.age}}</li>
+            </ul>
+        </div>
+        <div v-else>
+            <h2>采用监听器的人员列表</h2>
+            <input type="text" placeholder="请输入明星" v-model="keywords">
+
+            <ul>
+                <li v-for="(star, index) in filStars" :key="star.id">{{star.name}}-{{star.sex}}-{{star.age}}</li>
+            </ul>
+        </div>
     </div>
 
     <script>
@@ -132,14 +146,15 @@
                 },
                 styleObj2: {
                     backgroundColor: "skyblue",
-                }
+                },
 
             },
             methods: {
                 changmood() {
                     const arr = ['happy', 'sad', 'normal'];
                     this.mood = arr[Math.floor(Math.random() * 3)]
-                }
+                },
+
             },
         });
 
@@ -153,42 +168,61 @@
                     { id: "002", name: "lisi", age: 18 },
                     { id: "003", name: "wangwu", age: 30 },
                 ],
-                car:{
-                    name:"保时捷",
-                    price:"$700000",
-                    color:"black",
+                car: {
+                    name: "保时捷",
+                    price: "$700000",
+                    color: "black",
                 },
-                str:"hello",
-                stars:[
-                    {id:"001",name:"马冬梅", age:19, sex:"女" },
-                    {id:"002",name:"周冬雨", age:20, sex:"女" },
-                    {id:"003",name:"周杰伦", age:21, sex:"男" },
-                    {id:"004",name:"温兆伦", age:22, sex:"男" },
+                str: "hello",
+                stars: [
+                    { id: "001", name: "马冬梅", age: 30, sex: "女" },
+                    { id: "002", name: "周冬雨", age: 31, sex: "女" },
+                    { id: "003", name: "周杰伦", age: 18, sex: "男" },
+                    { id: "004", name: "温兆伦", age: 19, sex: "男" },
                 ],
-                keywords:"",
-                filStars:[],
+                keywords: "",
+                filStars: [],
+                flag: false, // 采用监听和计算属性来实现, 默认采用监听
+                sortType: 0, // 0 代表原顺序 1降序 2升序
             },
-            methods:{
-                add(){
-                    const liu={id:"004",name:"老刘",age:40};
+            methods: {
+                add() {
+                    const liu = { id: "004", name: "老刘", age: 40 };
                     this.persons.unshift(liu);
+                },
+                isUseComputed() {
+                    if (!this.flag) {
+                        this.flag = true;
+                    } else {
+                        this.flag = false;
+                    }
+                    return this.flag
                 }
+
             },
-            computed:{
-                filStars2(){     
-                    return this.stars.filter((star)=>{
-                            return star.name.indexOf(this.keywords) !== -1;
+            computed: {
+                filStars2() {
+                    const arr = this.stars.filter((star) => {
+                        return star.name.indexOf(this.keywords) !== -1;
+                    });
+                    // 排序
+                    if (this.sortType) {
+                        arr.sort((a1, a2) => {
+                            return this.sortType === 1 ? a2.age - a1.age : a1.age - a2.age;
                         });
-                }
+                    }
+                    return arr;
+
+                },
+
             },
-            watch:{
-                keywords:{
-                    immediate:true,
-                    handler(val){
-                        this.filStars=this.stars.filter((star)=>{
+            watch: {
+                keywords: {
+                    immediate: true,
+                    handler(val) {
+                        this.filStars = this.stars.filter((star) => {
                             return star.name.indexOf(val) !== -1;
                         })
-
                     }
                 }
             }
