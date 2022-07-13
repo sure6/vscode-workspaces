@@ -199,6 +199,14 @@
                     this.isHot = !this.isHot;
                     this.x++;
                 }
+            },
+            watch:{
+                isHot:{
+                    immediate:true,
+                    handler(newValue,oldValue){
+                        console.log("isHot is modified",newValue,oldValue);
+                    },
+                }
             }
         })
     </script>
