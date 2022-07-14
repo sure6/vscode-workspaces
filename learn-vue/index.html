@@ -259,10 +259,10 @@
                 // computed 属性不能实现异步任务,因为有return的缘故
                 firstname(val){
                     // 这里的函数必须写箭头函数,因为定时器由js引擎来调, 如果写成普通函数就会出现this指向window
-                    setTimeout(()=>{
-                        console.log(this);
-                        this.fullname=val+"-"+this.lastname;
-                    },1000)
+                    // setTimeout(()=>{
+                    //     console.log(this);
+                    //     this.fullname=val+"-"+this.lastname;
+                    // },1000)
                     
                 },
                 lastname(val){

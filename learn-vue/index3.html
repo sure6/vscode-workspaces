@@ -1,13 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>vue learning2</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.11.3/dayjs.min.js"></script>
 </head>
+
 <body>
-    
+    <div id="element11">
+        <form @submit.prevent="submitForm">
+            <label for="account">account: </label>
+            <input type="text" name="account" id="account" v-model.trim="account"><br> <br>
+            <label for="pwd">password: </label>
+            <input type="password" name="pwd" id="pwd" v-model="password"><br> <br>
+            <label for="age">age: </label>
+            <input type="number" name="age" id="age" v-model.number="age"><br> <br>
+            <label for="sex">gender: </label>
+            Male: <input type="radio" name="sex" value="male" v-model="sex">
+            Female: <input type="radio" name="sex" value="female" v-model="sex">
+            <br> <br>
+            <label for="hobby">Hobby:</label>
+            Learning <input type="checkbox" name="hobby" v-model="hobby" value="Learning">
+            Play games <input type="checkbox" name="hobby" v-model="hobby" value="game">
+            Travel <input type="checkbox" name="hobby" v-model="hobby" value="travel">
+            <br> <br>
+            <label for="campus">Campus</label>
+            <select name="campus" v-model="campus">
+                <option value="">choose campus</option>
+                <option value="Wuhan">Wuhan</option>
+                <option value="Malayisa">Malayisa</option>
+                <option value="Dubai">Dubai</option>
+            </select>
+            <br> <br>
+            <label for="otherInfo">Other Infomation:</label> <br><br>
+            <textarea name="otherInfo" cols="30" rows="5" v-model.lazy="otherInfo"></textarea>
+            <br> <br>
+            <input type="checkbox" v-model="agreement"> read and accept <a href="https://www.google.com"> (User
+                Pravacy)</a>
+            <br> <br>
+            <button>submit</button>
+        </form>
+    </div>
+    <hr>
+    <!-- 过滤器 -->
+    <div id="element12">
+        <h2>现在时间为: {{fmtDate}}</h2>
+        <h2>现在时间为: {{time | timeFormater}}</h2>
+        <h2>现在时间为: {{time | timeFormater('YYYY/MM/DD')}}</h2>
+        <h2>现在时间为: {{time | timeFormater('YYYY/MM/DD') | mySlice}}</h2>
+        <!-- 过滤器只能用在插值语法和v-bind属性 -->
+    </div>
+
+    <script>
+        Vue.filter('mySlice',function(val){
+            return val.slice(0,4);
+        });
+
+        new Vue({
+            el: "#element11",
+            data: {
+                // userInfo: {
+                    account: "",
+                    password: "",
+                    age:"",
+                    sex: "male",
+                    hobby: [],
+                    campus: 'Wuhan',
+                    otherInfo: "",
+                    agreement: false,
+                // }
+                },
+                methods: {
+                    submitForm() {
+                        // console.log(JSON.stringify(this._data));
+                        console.log(JSON.stringify(this._data));
+                    }
+                },
+        });
+
+        new Vue({
+
+
+            el:"#element12",
+            data:{
+                time:Date.now(),
+            },
+            computed:{
+                fmtDate(){
+                    return dayjs(this.time).format("YYYY-MM-DD HH:mm:ss");
+                },
+            },
+            // 局部过滤器
+            filters:{
+                timeFormater(val,fmtStr="YYYY-MM-DD HH:mm:ss"){
+                    console.log("@", val);
+                    // return hello;
+                    return dayjs(val).format(fmtStr);
+                },
+            }
+        });
+        
+    </script>
 </body>
+
 </html>
