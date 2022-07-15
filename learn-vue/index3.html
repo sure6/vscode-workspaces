@@ -82,6 +82,7 @@
     </div>
     <hr>
     
+
     <script>
         Vue.filter('mySlice', function (val) {
             return val.slice(0, 4);
@@ -188,9 +189,6 @@
             data: {
                 opacity: 1,
             },
-            beforeCreate() {
-                
-            },
             //Vue完成模版的解析并把初始的真实DOM元素放入页面后（挂载完毕）调用mounted
             mounted() {
                 setInterval(() => {
@@ -198,7 +196,8 @@
                     if (this.opacity <= 0) this.opacity = 1;
                 }, 16)
             },
-        })
+        });
+
 
     </script>
 </body>
