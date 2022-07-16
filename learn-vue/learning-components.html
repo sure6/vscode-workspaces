@@ -28,6 +28,10 @@
         <hello></hello>
     </div>
     <hr>
+<!--nested  components  -->
+    <div id="component3">
+    </div>
+    <hr>
 
    
 
@@ -106,6 +110,73 @@
     
         new Vue({
             el:"#component2",
+        })
+    
+    </script>
+
+    <script>
+        const student1 = Vue.extend({
+            name:"student1",
+            template: `
+                <div>
+                    <h2>student name: {{studentName}}</h2>
+                    <h2>student age: {{age}}</h2>
+                    
+                </div>
+            `,
+            data() {
+                return {
+                    studentName: "leesure",
+                    age: 30
+                }
+            },
+           
+        });
+
+        const school1 = Vue.extend({
+            name:"school1",
+            template: `
+                <div>
+                    <h1>school name : {{schoolName}}</h1>
+                    <h1>school address : {{address}}</h1>
+                    <student1></student1>
+                </div>
+            `,
+            data() {
+                return {
+                    schoolName: "UOW",
+                    address: "11 Northfieds Ave."
+                }
+            },
+            components:{
+                student1
+            }
+        });
+        
+
+        // components manager
+        const app = {
+            name:"app",
+            template:`
+            <div>
+                <hello ></hello>
+                <school1></school1> 
+            </div>
+            `,
+            components:{
+                hello,
+                school1
+            }
+
+        }
+
+    
+        new Vue({
+            el:"#component3",
+            template:`<app></app>`,
+            components:{
+                app
+            }
         })
     </script>
 </body>
