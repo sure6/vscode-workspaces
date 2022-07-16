@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>learning-components</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+</head>
+
+<body>
+    <!-- 非单文件组件 -->
+    <div id="component1">
+        <h1>{{title}}</h1>
+        <hr>
+        <!--third: use tags -->
+        <my-school></my-school>
+        <hr>
+        <student></student>
+        <hr>
+        <my-school></my-school>
+        <hr>
+    </div>
+    <hr>
+
+    <div id="component2">
+        <hello></hello>
+    </div>
+    <hr>
+
+   
+
+    <script>
+        Vue.config.productionTip = false;
+
+        // first: create school component
+        const school = Vue.extend({
+            name:"UOW",
+            template: `
+                <div>
+                    <h1>school name : {{schoolName}}</h1>
+                    <h1>school address : {{address}}</h1>
+                    <Button @click="popUp">点我弹框</Button>
+                </div>
+            `,
+            data() {
+                return {
+                    schoolName: "UOW",
+                    address: "11 Northfieds Ave."
+                }
+            },
+            methods: {
+                popUp() {
+                    alert(1);
+                }
+            },
+        });
+        // first: create student component
+        const student = Vue.extend({
+            template: `
+                <div>
+                    <h2>student name: {{studentName}}</h2>
+                    <h2>student age: {{age}}</h2>
+                </div>
+            `,
+            data() {
+                return {
+                    studentName: "leesure",
+                    age: 30
+                }
+            },
+        });
+
+        //  Vue.extend()可以不写, 实际调用了
+        const hello = {
+            template:`
+            <div>
+                <h2>学生名: {{sname}}</h2></h2>
+            </div>
+            `,
+            data() {
+                return {
+                    sname: "sadad",
+                }
+            },
+        }; 
+        
+        // 全局组件
+        Vue.component("hello", hello);
+        
+        new Vue({
+            el: "#component1",
+            data: {
+                "title": "非单文件组件"
+            },
+            // second: registed components(局部组件)
+            components: {
+                // MySchool必须在脚手架中命名, 多个单词用-连接
+                // MySchool: school,
+                "my-school": school,
+                student: student
+            }
+
+        });
+    
+        new Vue({
+            el:"#component2",
+        })
+    </script>
+</body>
+
+</html>
