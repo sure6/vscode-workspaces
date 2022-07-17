@@ -1,0 +1,91 @@
+
+      @keyframes snowRotate {
+        from {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+    
+      @keyframes snowMove {
+        form {
+          top: 0%;
+        }
+        to {
+          top: 100%;
+        }
+      }
+  
+      @keyframes textRotate {
+        from {
+          -webkit-transform: perspective(500) rotate3d(0, 1, 0, 0);
+          color: green;
+        }
+        20% {
+          -webkit-transform: perspective(500) rotate3d(0, 1, 0, 360deg);
+          color: yellow;
+        }
+        40% {
+          -webkit-transform: perspective(500) rotate3d(1, 0, 0, 0deg);
+        }
+        60% {
+          -webkit-transform: perspective(500) rotate3d(1, 0, 0, 360deg);
+          color: green;
+        }
+        80% {
+          -webkit-transform: perspective(500) rotate3d(0, 0, 1, 0deg);
+        }
+        to {
+          -webkit-transform: perspective(500) rotate3d(0, 0, 1, 360deg);
+          color: yellow;
+        }
+      }
+    
+      
+      body {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        /* background:Crimson; */
+        background: url('../img/christmas.jpg');
+      }
+      h1 {
+        font-size: 3rem;
+        max-width: 8em;
+        text-shadow: .03em .03em .03em white,
+        -.02em -.02em .02em black;
+        text-align: center;
+        margin: auto;
+        margin-top: 8rem;
+        box-shadow: 0 -.2em .2em red;
+        animation: textRotate 24s linear infinite;
+        z-index: 9999;
+      }
+      #container {
+        width: 100%;
+      }
+      img {
+        width: 10px;
+        position: absolute;
+        top: 0;
+        transition: 3s linear;
+        animation: snowRotate 3s infinite alternate,
+        snowMove 4s linear;
+        z-index: 1;
+
+      }
+      #bottom {
+        width: 100%;
+        height: 20%;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        background: linear-gradient( red, lightblue);
+      }
+
+      .leesure{
+        text-align: center;
+        line-height: 50px;
+        font-weight: bold;
+      }

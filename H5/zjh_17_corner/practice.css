@@ -1,0 +1,136 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    font-family: Tahoma, sans-serif;
+    font-size: 18px;
+    line-height: 1.5em;
+    background-image: url(images/templatemo_body.jpg) no-repeat;
+    background-color: #ebe8e1;
+    background-position: top center;
+    background-attachment: fixed;
+}
+
+#container {
+    width: 806px;
+    margin: 0 auto;
+    padding-left: 6px;
+}
+
+#nav {
+    height: 100px;
+}
+
+#logo {
+    padding-top: 25px;
+    display: inline-block;
+}
+
+#items {
+    display: inline;
+}
+
+#items>ul {
+    list-style-type: none;
+    display: inline;
+    float: right;
+    margin: 40px 0;
+}
+
+#items>ul li {
+    display: inline;
+    padding-left: 25px;
+}
+
+a:link {
+    color: #666;
+    text-decoration: none;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a:active {
+    color: red;
+}
+
+#clear {
+    clear: both;
+}
+
+#first_part {
+    margin-top: 3px;
+    margin-left: 6px;
+    background-color: #fff;
+}
+
+#content_home {
+    position: absolute;
+}
+
+#content_box {
+    position: relative;
+    padding: 70px;
+}
+
+#image_01 {
+    background-image: url(images/templatemo_image_bg.jpg) no-repeat;
+    display: inline-block;
+}
+
+#content_01 {
+    width: 353px;
+    height: 157px;
+    display: inline-block;
+    overflow-y: scroll;
+    font-size: 2px;
+    font-weight: 400;
+}
+
+#design_service {
+    display: inline-block;
+}
+
+.service_list li a {
+    color: #bfb839;
+    font-weight: normal;
+    font-size: 12px;
+    text-decoration: none;
+    line-height: 0.5em;
+}
+
+.service_list li a:hover {
+    text-decoration: underline;
+}
+
+.service_list {
+    list-style-image: url(images/templatemo_list.jpg);
+}
+
+.special_award_content {
+    font-size: 12px;
+}
+
+#special_award {
+    width: 300px;
+    float: right;
+}
+
+a.gototop {
+    display: block;
+    position: absolute;
+    width: 140px;
+    height: 25px;
+    padding: 65px 10px 0 0;
+    text-align: right;
+    font-size: 14px;
+    bottom: 0;
+    right: 0;
+    color: #000;
+    background: url(images/templatemo_gototop.jpg) no-repeat;
+    text-decoration: none;
+}

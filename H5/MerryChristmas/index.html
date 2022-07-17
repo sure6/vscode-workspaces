@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8" name="viewport" content="initial-scale=1,user-scalable=no" />
+  <link rel="Shortcut Icon"
+    href="https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1941950502,4051596646&fm=26&gp=0.jpg">
+  <link rel="subresource" href="snow.svg" />
+  <link rel="stylesheet" href="CSS/MerryChristmas.CSS">
+  <title>Merry Christmas</title>
+
+</head>
+
+<body>
+  <h1>Merry Christmas</h1>
+  <div id="container"></div>
+  <div id="bottom">
+
+    <p class="leesure"><audio loop="loop" controls="controls" id="christmas">
+
+      </audio><br>Copyright © 2020 designed by leesure </p>
+
+  </div>
+
+  <script>
+    var w = innerWidth,
+      h = innerHeight;
+    var container = document.querySelector('#container');
+    var bottom = document.querySelector('#bottom');
+    var snowImg = document.createElement('img');
+    var snow_top = 0,
+      snow_left = 0;
+    var count = 0;
+    var snow_number = h / 3;
+    // definite snowflake svg pic
+    snowImg.src = './snow.svg';
+    // definte snowflake drop position
+    var int1 = setInterval(function () {
+      w = innerWidth,
+        h = innerHeight;
+      var snowTmpImg = snowImg.cloneNode();
+      snow_left = Math.round(Math.random() * w) - 20;
+      snowTmpImg.style.left = snow_left + 'px';
+      snowTmpImg.style.width = Math.round(Math.random() * 50) + 15 + 'px';
+      container.appendChild(snowTmpImg);
+      snowTmpImg.style.opacity = Math.round(Math.random() * 10) / 10;
+      count++;
+    }, 10);
+    // delete top snowflake
+    var int2 = setInterval(function () {
+      if (container.childNodes.length > snow_number) {
+        container.removeChild(container.
+          childNodes[0]);
+      }
+    }, 10);
+
+    document.body.parentNode.style.overflowX = 'hidden';// Hide the horizontal scroll bar
+    document.body.parentNode.style.overflowY = 'hidden';// Hide the vertical scroll bar
+
+    var audio = document.getElementById('christmas');
+    // define  binary type media, in order to prevent file stole
+    function ajaxBlob(url, fn) {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', url);
+      xhr.responseType = 'blob';
+      xhr.onload = function () {
+        fn(xhr.response);
+      };
+      xhr.send();
+    }
+
+    // execute 
+    ajaxBlob('https://sure6.github.io/merryChristmas/christmas.mp3', function (res) {
+      var src = URL.createObjectURL(res);
+      audio.src = src;
+    })
+
+    audio.play(); // if browser support autoplay, execute the code 
+
+  </script>
+  <script>
+
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+#container{
+      width: 1000px;
+      height: 500px;
+      border: 1px solid black;
+      margin: 0 auto;
+      position: relative;
+      /* overflow: hidden; */
+      margin-top: 200px;
+}
+
+#snake{
+    width: 20px;
+    height: 20px;
+    background: red;
+    position: absolute;
+    top: 50%;
+    /* left: 30%; */
+}

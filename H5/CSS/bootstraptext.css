@@ -1,0 +1,28 @@
+body{
+    width: 100%;
+    height: 3000px;
+}
+
+.navbar{
+    position: -webkit-sticky; /* compatibility of safari browser*/
+    position: sticky;
+    top: 0;
+    z-index: 9999;
+}
+
+.nav{
+    position: -webkit-sticky;
+    position: sticky;
+    top: 83px;
+    z-index: 9999;
+}
+
+#demo{
+    top: 50%;
+    width: 50%;
+}
+
+/* 遍历所有下的子元素  */
+/* .carousel > *{
+    width: 100%;
+} */

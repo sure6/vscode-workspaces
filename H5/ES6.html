@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+	<title>Document</title>
+	<script>
+		// let 和 var 的作用域 let 块级作用域 。
+		// for循环还有一个特别之处，就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域。
+		/*{
+			let a = 10;
+			var b = 10;
+			for (let i = 0; i < 10; i++) {
+				// 10+0 10+1 11+2 13+3 16+4 20+5 25+6 31+7 38+8 46+9
+				a= a+i;
+			}
+			
+		}
+		console.log(b);*/
+		
+		// 不存在的变量提升
+		//ES6 明确规定，如果区块中存在let和const命令，这个区块对这些命令声明的变量，从一开始就形成了封闭作用域。凡是在声明之前就使用这些变量，就会报错。
+		/*console.log(a);
+		var a = 'abv';
+		
+		console.log(b);
+		let b = 'abc';*/
+		
+		function f() { console.log('I am outside!'); }
+
+		(function () {
+		  
+		  if (false) {
+		  	function f() { console.log('I am inside!'); }
+		  }
+		  f();
+		}());
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

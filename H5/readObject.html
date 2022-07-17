@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="file" id="file" />
+    <input type="button" value="读取二进制数据" οnclick="readAsBinaryString()" />
+    <div id="result"></div>
+    <script>
+        // function readAsBinaryString() {
+        //     if (window.FileReader) {
+        //         var file = document.getElementById("file").files[0];  
+        //         var fr = new FileReader();
+        //         fr.readAsBinaryString(file)
+        //         console.log(file)
+        //         fr.οnlοad = function (f) {
+        //             console.log(this.result)
+        //             // var result = document.getElementById("result");
+        //             // //显示文件  
+        //             // result.innerHTML = this.result;
+        //         }
+        //     } else {
+        //         alert("cannot read file")
+        //     }
+        // }
+
+        // function readTxt() {
+		// 		var xhr = new XMLHttpRequest();
+		// 		xhr.open("get", "file:\\\\D:\\sure.txt", true);
+		// 		xhr.send();
+		// 		xhr.onreadystatechange = function() {
+		// 			if(xhr.readyState == 4 && xhr.status == 200) {
+		// 				console.log(xhr);
+		// 				console.log(xhr.responseText);
+		// 			} else if(xhr.status == 404) {
+		// 				console.log(xhr.status);
+		// 			}
+		// 		};
+		// 	}
+		// 	readTxt();
+
+        var fso = new ActiveXObject("Scripting.FileSystemObject");
+        var f1 = fso.GetFile("D:\\sure.txt");
+        console.log(f1)
+
+    </script>
+</body>
+
+</html>
