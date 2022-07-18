@@ -19,3 +19,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.demo{
+  color: blue;
+}
+</style>

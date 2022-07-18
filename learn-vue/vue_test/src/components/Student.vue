@@ -1,10 +1,7 @@
 <template>
-  <div>
-    <h1>{{msg}}</h1>
-    <h1>student name : {{ name | mySlice}}</h1>
-    <h1>gender : {{ gender }}</h1>
-    <input type="text" v-fbind:value="name">
-
+  <div class="school">
+    <h1 class="demo">student name : {{ name }}</h1>
+    <h1 class="uow">gender : {{ gender }}</h1>
   </div>
 </template>
 
@@ -13,7 +10,6 @@ export default {
   name: "Student",
   data() {
     return {
-      msg:"欢迎来到vue",
       name:"Jerry",
       gender:"male",
     };
@@ -21,3 +17,9 @@ export default {
 
 };
 </script>
+
+<style scoped>
+.school{
+  background-color: yellowgreen;
+}
+</style>

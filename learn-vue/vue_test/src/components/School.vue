@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <h1>School name : {{ name | mySlice  }}</h1>
-    <h1>School address : {{ address }}</h1>
+  <div class="school">
+    <h1 class="uow">School name : {{ name}}</h1>
+    <h1 class="demo">School address : {{ address }}</h1>
   </div>
 </template>
 
@@ -17,3 +17,13 @@ export default {
  
 };
 </script>
+
+
+<style scoped lang="less">
+.school{
+  background: yellow;
+  .uow{
+    font-size: 50px;
+  }
+}
+</style>
