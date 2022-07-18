@@ -1,27 +1,30 @@
 <template>
-  <div> 
-    <img src="./assets/logo.png" alt="logo">
-    <MySchool class="demo"></MySchool>
-    <MyStudent></MyStudent>
+  <div>
+    <h1 v-text="msg" ref="title"></h1>
+    <button @click="showDom" ref="btn">点我显示上方dom元素</button>
+    <School ref="sch" id="sch1" />
   </div>
 </template>
 
 <script>
-    // 引用组件
-    import MySchool from './components/my-school.vue';
-    import MyStudent from './components/my-student.vue';
+import School from "./components/School.vue";
 
-    export default {
-        name:"App",
-        components:{
-            MySchool,
-            MyStudent
-        }
-    }
+export default {
+  name: "App",
+  data() {
+    return {
+      msg: "欢迎来到vue",
+    };
+  },
+  components: {
+    School,
+  },
+  methods: {
+    showDom() {
+      console.log(this);
+      console.log(this.$refs);
+      console.log(document.getElementById("sch1"));
+    },
+  },
+};
 </script>
-
-<style>
-.demo{
-   color: bisque; 
-}
-</style>
