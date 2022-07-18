@@ -2,8 +2,8 @@
   <div id="root">
     <div class="todo-container">
       <div class="todo-wrap">
-        <MyHeader />
-        <MyList/>
+        <MyHeader :addTodo="addTodo"/>
+        <MyList :todos="todos"/>
         <MyFooter/>
       </div>
     </div>
@@ -21,6 +21,22 @@ export default {
     MyHeader,
     MyList,
     MyFooter,
+  },
+  data() {
+    return {
+        todos:[
+            {id:"0001", name:"eating",done:true},
+            {id:"0002", name:"sleeping",done:false}, 
+            {id:"0003", name:"driving",done:true},
+        ]
+    }
+  },
+  methods: {
+    // 采用组件间通信, 父亲首先定义方法给儿子使用, 儿子传参数给父亲
+    addTodo(todo){
+      // console.log("我收到了数据", todo)
+      this.todos.unshift(todo);
+    }
   },
 };
 </script>

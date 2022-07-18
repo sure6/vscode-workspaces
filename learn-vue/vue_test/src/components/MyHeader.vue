@@ -1,14 +1,34 @@
 <template>
   <div class="todo-header">
-    <input type="text" placeholder="please input your task name, press enter" />
+    <input type="text" placeholder="please input your task name, press enter" @keyup.enter="add" v-model="input"/>
   </div>
 </template>
 
 <script>
+
+import {nanoid} from 'nanoid'
+
 export default {
   name: "MyHeader",
   data() {
-    return {};
+    return {
+      input:"",
+    }
+  },
+  props:["addTodo"],
+  methods: {
+    add(e){
+      
+      if (!this.input.trim()) return alert("input null does not be allowed ")
+      const todoObj = {
+        id:nanoid(),
+        name:this.input,
+        done:false
+      };
+
+      this.addTodo(todoObj)
+      this.input=""
+    }
   },
 };
 </script>

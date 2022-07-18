@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "less-loader": "^7.3.0"
+    "less-loader": "^7.3.0",
+    "nanoid": "^4.0.0"
   }
 }
