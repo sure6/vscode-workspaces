@@ -17,7 +17,7 @@ export default {
   },
   props:["addTodo"],
   methods: {
-    add(e){
+    add(){
       
       if (!this.input.trim()) return alert("input null does not be allowed ")
       const todoObj = {

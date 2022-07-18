@@ -42,7 +42,7 @@ export default {
   },
 
   methods: {
-    checkAll() {
+    checkAll(e) {
       // console.log(e.target.checked);
       this.checkAllTodo(e.target.checked);
     },
