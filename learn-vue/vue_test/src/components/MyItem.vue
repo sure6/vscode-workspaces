@@ -1,10 +1,11 @@
 <template>
-  <li>
+  <li >
     <label>
-      <input type="checkbox" :checked="todo.done"/>
+      <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)"/>
+      <!-- <input type="checkbox" v-model="todo.done" @change="handleCheck(todo.id)"/> 也能实现, 因为违反了修改props -->
       <span>{{todo.name}}</span>
     </label>
-    <button class="btn btn-danger" style="display: none">delete</button>
+    <button class="btn btn-danger" @click="deleteTodo(todo.id)">delete</button>
   </li>
 </template>
 
@@ -12,7 +13,19 @@
 export default {
   name: "MyItem",
   // 声明接受todo对象
-  props:["todo"]
+  props:["todo","checkTodo","handleDelete"],
+  methods:{
+    // choosing or cancel choosing
+    handleCheck(id){
+        // console.log(id);
+        this.checkTodo(id);
+    },
+    deleteTodo(id){
+        if(confirm("are you sure to delete?")){
+            this.handleDelete(id)
+        }
+    }
+  }
 };
 </script>
 

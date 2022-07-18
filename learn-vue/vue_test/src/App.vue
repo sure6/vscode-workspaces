@@ -3,7 +3,7 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <MyHeader :addTodo="addTodo"/>
-        <MyList :todos="todos"/>
+        <MyList :todos="todos" :checkTodo="checkTodo" :handleDelete="handleDelete"/>
         <MyFooter/>
       </div>
     </div>
@@ -33,9 +33,18 @@ export default {
   },
   methods: {
     // 采用组件间通信, 父亲首先定义方法给儿子使用, 儿子传参数给父亲
+    // add todo
     addTodo(todo){
       // console.log("我收到了数据", todo)
       this.todos.unshift(todo);
+    },
+    checkTodo(id){
+      this.todos.forEach(todo => {
+        if (todo.id === id) todo.done = !todo.done;
+      });
+    },
+    handleDelete(id){
+      this.todos = this.todos.filter(todo=>todo.id !==id)
     }
   },
 };
