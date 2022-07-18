@@ -1,0 +1,13 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "serve",
+			"path": "learn-vue/vue_test",
+			"problemMatcher": [],
+			"label": "npm: serve - learn-vue/vue_test",
+			"detail": "vue-cli-service serve"
+		}
+	]
+}
