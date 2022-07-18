@@ -1,30 +1,20 @@
 <template>
   <div>
-    <h1 v-text="msg" ref="title"></h1>
-    <button @click="showDom" ref="btn">点我显示上方dom元素</button>
-    <School ref="sch" id="sch1" />
+    <Student name="Alice" gender="male" :age="18"/>
+    <hr>
+    <Student name="jerry" gender="female" />
+    <hr>
+    <!-- <Student /> -->
   </div>
 </template>
 
 <script>
-import School from "./components/School.vue";
+import Student from "./components/Student.vue";
 
 export default {
   name: "App",
-  data() {
-    return {
-      msg: "欢迎来到vue",
-    };
-  },
   components: {
-    School,
-  },
-  methods: {
-    showDom() {
-      console.log(this);
-      console.log(this.$refs);
-      console.log(document.getElementById("sch1"));
-    },
+    Student,
   },
 };
 </script>
