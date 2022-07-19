@@ -3,11 +3,7 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <MyHeader @addTodo="addTodo" />
-        <MyList
-          :todos="todos"
-          :checkTodo="checkTodo"
-          :handleDelete="handleDelete"
-        />
+        <MyList :todos="todos"/>
         <MyFooter
           :todos="todos"
           @checkAllTodo="checkAllTodo"
@@ -72,6 +68,14 @@ export default {
       },
     },
   },
+  mounted(){
+    this.$bus.$on("checkTodo", this.checkTodo)
+    this.$bus.$on("handleDelete", this.handleDelete)
+  },
+  beforeDestroy(){
+    this.$bus.$off("checkTodo")
+    this.$bus.$off("handleDelete")
+  }
 };
 </script>
 
