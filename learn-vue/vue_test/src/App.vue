@@ -30,11 +30,7 @@ export default {
   data() {
     return {
       todos: JSON.parse(localStorage.getItem("todos")) || [],
-      // todos:[
-      //     {id:"0001", name:"eating",done:true},
-      //     {id:"0002", name:"sleeping",done:false},
-      //     {id:"0003", name:"driving",done:true},
-      // ]
+    
     };
   },
   methods: {
@@ -60,10 +56,16 @@ export default {
     clearAllTodo() {
       this.todos = this.todos.filter((todo) => !todo.done);
     },
+    updateTodo(id,name){
+      this.todos.forEach((todo) => {
+        if (todo.id === id) todo.name = name;
+      });
+    }
   },
   watch: {
     //采用本地存储, 深度监视, 当对象里面的东西改变时,也可以改
     todos: {
+      deep:true,
       handler(value) {
         localStorage.setItem("todos", JSON.stringify(value));
       },
@@ -71,11 +73,13 @@ export default {
   },
   mounted(){
     this.$bus.$on("checkTodo", this.checkTodo)
+    this.$bus.$on("updateTodo", this.updateTodo)
     // this.$bus.$on("handleDelete", this.handleDelete)
     this.pubId = pubsub.subscribe("handleDelete",this.handleDelete)
   },
   beforeDestroy(){
     this.$bus.$off("checkTodo")
+    this.$bus.$off("updateTodo")
     // this.$bus.$off("handleDelete")
     pubsub.unsubscribe(this.pubId)
   }
@@ -104,6 +108,12 @@ body {
   color: #fff;
   background-color: #da4f49;
   border: 1px solid #bd362f;
+}
+.btn-edit {
+  color: #fff;
+  background-color: skyblue;
+  border: 1px solid rgb(119, 210, 246);
+  margin-right: 5px;
 }
 .btn-danger:hover {
   color: #fff;

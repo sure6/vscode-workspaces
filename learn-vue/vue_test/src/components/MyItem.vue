@@ -1,34 +1,61 @@
 <template>
-  <li >
+  <li>
     <label>
-      <input type="checkbox" :checked="todo.done" @change="handleCheck(todo.id)"/>
+      <input
+        type="checkbox"
+        :checked="todo.done"
+        @change="handleCheck(todo.id)"
+      />
       <!-- <input type="checkbox" v-model="todo.done" @change="handleCheck(todo.id)"/> 也能实现, 因为违反了修改props -->
-      <span>{{todo.name}}</span>
+      <span v-show="!todo.isEdit">{{ todo.name }}</span>
+      <input
+        type="text"
+        :value="todo.name"
+        v-show="todo.isEdit"
+        @blur="handleBlur(todo, $event)"
+        ref="inputTitle"
+      />
     </label>
     <button class="btn btn-danger" @click="deleteTodo(todo.id)">delete</button>
+    <button v-show="!todo.isEdit" class="btn btn-edit" @click="editTodo(todo)">
+      edit
+    </button>
   </li>
 </template>
 
 <script>
-import pubsub from "pubsub-js"
+import pubsub from "pubsub-js";
 export default {
   name: "MyItem",
   // 声明接受todo对象
-  props:["todo"],
-  methods:{
+  props: ["todo"],
+  methods: {
     // choosing or cancel choosing
-    handleCheck(id){
-        // console.log(id);
-        this.$bus.$emit("checkTodo",id);
-       
+    handleCheck(id) {
+      this.$bus.$emit("checkTodo", id);
     },
-    deleteTodo(id){
-        if(confirm("are you sure to delete?")){
-            // this.$bus.$emit("handleDelete",id)
-             pubsub.publish("handleDelete",id)
-        }
-    }
-  }
+    deleteTodo(id) {
+      if (confirm("are you sure to delete?")) {
+        // this.$bus.$emit("handleDelete",id)
+        pubsub.publish("handleDelete", id);
+      }
+    },
+    editTodo(todo) {
+      if (Object.prototype.hasOwnProperty.call(todo,"isEdit")) {
+        todo.isEdit = true;
+      } else {
+        this.$set(todo, "isEdit", true);
+      }
+      this.$nextTick(function () {
+        this.$refs.inputTitle.focus();
+      });
+    },
+    handleBlur(todo, e) {
+      todo.isEdit = false;
+      if (!e.target.value.trim()) return alert("null input is not allowed!!");
+      this.$bus.$emit("updateTodo", todo.id, e.target.value);
+    },
+  },
 };
 </script>
 
