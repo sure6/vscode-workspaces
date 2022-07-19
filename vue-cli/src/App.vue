@@ -6,16 +6,15 @@
 </template>
 
 <script>
-import "./assets/css/bootstrap.css"
-// import axios from 'axios'
+import Search from "./components/Search.vue"
+import List from "./components/List.vue"
 
 
 export default {
   name: "App",
-  methods: {
-  },
+  components:{List,Search},
 }
 </script>
 
-<style>
+<style >
 </style>

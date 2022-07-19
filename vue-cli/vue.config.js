@@ -2,7 +2,6 @@ const { defineConfig } = require('@vue/cli-service')
 module.exports = defineConfig({
   transpileDependencies: true,
   // 配置内置的代理, 解决跨域请求
-
   //只能单个配置
   // devServer: {
   //   proxy: 'http://localhost:5000'
@@ -22,5 +21,6 @@ module.exports = defineConfig({
         pathRewrite:{'^/foo':''},
       }
     }
-  }
+  },
+  lintOnSave:false,  // Turn off grammar checking 
 })
