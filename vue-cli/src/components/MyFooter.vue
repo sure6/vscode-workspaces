@@ -48,7 +48,7 @@ export default {
     },
 
     clearAll(){
-      this.$emit("checkAllTodo");
+      this.$emit("clearAllTodo");
     }
   },
 };
