@@ -15,7 +15,6 @@ export default {
       input:"",
     }
   },
-  props:["addTodo"],
   methods: {
     add(){
       
@@ -26,7 +25,7 @@ export default {
         done:false
       };
 
-      this.addTodo(todoObj)
+      this.$emit("addTodo",todoObj)
       this.input=""
     }
   },
