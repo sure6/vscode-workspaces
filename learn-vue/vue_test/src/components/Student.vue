@@ -3,6 +3,7 @@
     <h2>student name : {{ name }}</h2>
     <h2>gender : {{ gender }}</h2>
     <button @click="sendStudentName">点我获取studentname</button>
+
   </div>
 </template>
 

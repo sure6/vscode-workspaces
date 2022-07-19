@@ -2,7 +2,7 @@
   <div class="main">
     <h1> Welcome to learn Vue!!</h1>
     <!--通过绑定一个自定义事件实现了子给父传递数据(自定义事件绑在子组件上) 第一种写法使用@或v-on-->
-    <School v-on:uow="getSchoolName"/>
+    <School v-on:uow="getSchoolName" @demo="test"/>
      <!--once代表改事件只执行一次-->
     <!-- <School @uow.once="getSchoolName"/> -->
       <!--第二种写法使用ref绑定事件--->
@@ -31,6 +31,9 @@ export default {
     },
     getSchoolName(schoolName,){
       alert(schoolName)
+    },
+    test(){
+      console.log("demo自定义事件触发")
     }
   },
   //可以通过ref拿到组件实例对象
