@@ -6,6 +6,7 @@
     <input type="text" placeholder="please input name" v-model="name" />
     <button @click="add">add</button>
     <button @click="addLee">addLee</button>
+    <button @click="addPerson">addPerson</button>
     <ul>
       <li v-for="(p, index) in personList" :key="index">{{ p.name }}</li>
     </ul>
@@ -43,6 +44,9 @@ export default {
         const personObj={id:nanoid(), name:this.name}
         this.$store.dispatch('PersonOption/addPersonLee',personObj)
         this.name=""
+    },
+    addPerson(){
+      this.$store.dispatch("PersonOption/addPersonServer")
     }
   },
 };

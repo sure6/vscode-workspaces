@@ -3,6 +3,8 @@
 //import Vuex
 import Vue from "vue";
 import Vuex from "vuex";
+import axios from 'axios';
+import { nanoid } from "nanoid";
 Vue.use(Vuex)
 // prepare actions---use action in response components
 const CountOption={
@@ -49,6 +51,16 @@ const PersonOption={
             }else{
                 alert("the first name of add person must be Lee")
             }
+        },
+        addPersonServer(context){
+            axios.get("https://api.uixsj.cn/hitokoto/get?type=social").then(
+                response=>{
+                    context.commit("ADD_PERSON",{id:nanoid(),name:response.data})
+                },
+                error=>{
+                    alert(error.message)
+                }
+            )
         }
     },
     mutations :{
@@ -68,14 +80,6 @@ const PersonOption={
     },
 }
 
-
-
-// // prepare getters---use to process state
-// const getters={
-//     bigSum(state){
-//         return state.sum*10
-//     }
-// }
 
 //create store
 const store =new Vuex.Store({
