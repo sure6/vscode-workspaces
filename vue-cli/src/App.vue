@@ -1,25 +1,27 @@
 <template>
   <div class="container1">
-
     <Category title="games">
-      <template scope="uow">
-        {{uow}}
+      <template scope="uow" slot="a">
         <ul>
-          <li v-for="(g, index) in game" :key="index">{{ g }}</li>
+          <li v-for="(g, index) in uow.game" :key="index">{{ g }}</li>
         </ul>
       </template>
     </Category>
-    <!-- <Category title="games">
-      <ul>
-        <li v-for="(g, index) in game" :key="index">{{ g }}</li>
-      </ul>
-    </Category>
+
     <Category title="games">
-      <ul>
-        <li v-for="(g, index) in game" :key="index">{{ g }}</li>
-      </ul>
-    </Category> -->
-   
+      <template scope="uow">
+        <ol>
+          <li v-for="(g, index) in uow.game" :key="index">{{ g }}</li>
+        </ol>
+        <h4>{{ uow.msg }}</h4>
+      </template>
+    </Category>
+
+    <Category title="games">
+      <template slot-scope="uow">
+        <h4 v-for="(g, index) in uow.game" :key="index">{{ g }}</h4>
+      </template>
+    </Category>
   </div>
 </template>
 
@@ -29,7 +31,6 @@ import Category from "./components/Category.vue";
 export default {
   name: "App",
   components: { Category },
-  
 };
 </script>
 

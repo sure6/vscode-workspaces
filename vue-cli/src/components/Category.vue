@@ -1,7 +1,8 @@
 <template>
   <div class="category">
     <h3>{{ title }}</h3>
-    <slot :game="games"> 我是默认值,当使用者没有传递具体结构时,我会出现</slot>
+    <slot :game="games" msg="hello"> 我是默认值,当使用者没有传递具体结构时,我会出现</slot>
+    <slot name="a" :game="games" msg="hello"> 我是默认值,当使用者没有传递具体结构时,我会出现</slot>
   </div>
 </template>
 
@@ -12,9 +13,7 @@ export default {
   props: ["title"],
   data() {
     return {
-      // foods: ["hot pot", "barbecue", "lobster", "steak"],
       games: ["LOL", "CF", "Dota", "Pubg"],
-      // films: ["a", "b", "c", "d"],
     };
   },
 };
