@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>current sum is :{{$store.state.sum}}  </h2>
+    <h2>current sum*10 is :{{$store.getters.bigSum}}  </h2>
 
     <select v-model.number="n">
       <option value="1">1</option>
@@ -17,7 +18,7 @@
 <script>
 export default {
   name: "MyCount",
-  data() {
+  data() { 
     return {
       n: 1,
     };
