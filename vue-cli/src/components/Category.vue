@@ -2,7 +2,8 @@
   <div class="category">
     <h3>{{ title }}</h3>
       <!-- 定义一个插槽  等着组件的使用者进行填充-->
-      <slot> 我是默认值,当使用者没有传递具体结构时,我会出现</slot>
+      <slot name="a"> 我是默认值,当使用者没有传递具体结构时,我会出现</slot>
+      <slot name="b"> 我是默认值,当使用者没有传递具体结构时,我会出现</slot>
   </div>
 </template>
 
