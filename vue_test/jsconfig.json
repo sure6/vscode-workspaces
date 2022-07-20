@@ -6,7 +6,7 @@
     "moduleResolution": "node",
     "paths": {
       "@/*": [
-        "src_4/*"
+        "src/*"
       ]
     },
     "lib": [
@@ -16,6 +16,5 @@
       "scripthost"
     ],
     "skipLibCheck": true,
-    // "typeRoots": ["node_modules/@types"]
   }
 }
