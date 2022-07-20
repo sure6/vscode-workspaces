@@ -4,6 +4,7 @@
     <!-- <h2>current sum is :{{add}}  </h2> -->
     <h2>current sum*10 is :{{bigSum}}  </h2>
     <h3> I learn {{subject}} in {{school}} </h3>
+    <h3> number of person: {{personList.length}} </h3>
     <!-- <h3> I learn {{kemu}} in {{xuexiao}} </h3> -->
     <select v-model.number="n">
       <option value="1">1</option>
@@ -27,7 +28,7 @@ export default {
     };
   },
   computed:{
-    ...mapState(["sum","subject","school"]),
+    ...mapState(["sum","subject","school","personList"]),
     // ...mapState({add:"sum",kemu:"subject",xuexiao:"school"}),
     ...mapGetters(["bigSum"]),
     // ...mapGetters({bigSum:"bigSum"}),

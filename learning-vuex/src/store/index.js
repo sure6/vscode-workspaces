@@ -32,13 +32,19 @@ const mutations ={
     },
     SUB(state,value){
         state.sum-=value
+    },
+    ADD_PERSON(state,value){
+        state.personList.unshift(value)
     }
 }
 // prepare state---use to store data 
 const state ={
     sum: 0,
     school:"uow",
-    subject:"CSCI927"
+    subject:"CSCI927",
+    personList:[
+        {id:"001",name:"Jerry"}
+    ]
 }
 // prepare getters---use to process state
 const getters={
