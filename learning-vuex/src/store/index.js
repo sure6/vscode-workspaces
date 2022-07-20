@@ -37,6 +37,8 @@ const mutations ={
 // prepare state---use to store data 
 const state ={
     sum: 0,
+    school:"uow",
+    subject:"CSCI927"
 }
 // prepare getters---use to process state
 const getters={

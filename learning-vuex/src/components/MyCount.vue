@@ -1,8 +1,10 @@
 <template>
   <div>
-    <h2>current sum is :{{$store.state.sum}}  </h2>
-    <h2>current sum*10 is :{{$store.getters.bigSum}}  </h2>
-
+    <h2>current sum is :{{sum}}  </h2>
+    <!-- <h2>current sum is :{{add}}  </h2> -->
+    <h2>current sum*10 is :{{bigSum}}  </h2>
+    <h3> I learn {{subject}} in {{school}} </h3>
+    <!-- <h3> I learn {{kemu}} in {{xuexiao}} </h3> -->
     <select v-model.number="n">
       <option value="1">1</option>
       <option value="2">2</option>
@@ -16,12 +18,19 @@
 </template>
 
 <script>
+import {mapState,mapGetters} from 'vuex'
 export default {
   name: "MyCount",
   data() { 
     return {
       n: 1,
     };
+  },
+  computed:{
+    ...mapState(["sum","subject","school"]),
+    // ...mapState({add:"sum",kemu:"subject",xuexiao:"school"}),
+    ...mapGetters(["bigSum"]),
+    // ...mapGetters({bigSum:"bigSum"}),
   },
   methods: {
     increment() {
