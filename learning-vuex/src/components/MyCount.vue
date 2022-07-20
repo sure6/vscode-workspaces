@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import {mapState,mapGetters,mapActions,mapMutations} from 'vuex'
+import {mapState,mapActions,mapGetters,mapMutations} from 'vuex'
 export default {
   name: "MyCount",
   data() { 
@@ -28,29 +28,19 @@ export default {
     };
   },
   computed:{
-    ...mapState(["sum","subject","school","personList"]),
-    // ...mapState({add:"sum",kemu:"subject",xuexiao:"school"}),
-    ...mapGetters(["bigSum"]),
-    // ...mapGetters({bigSum:"bigSum"}),
+    ...mapState("CountOption",["sum","subject","school"]),
+    ...mapState("PersonOption",["personList"]),
+    // ...mapState(["CountOption","personList"]),
+    ...mapGetters("CountOption",["bigSum"]),
   },
   methods: {
-    // increment() {
-    //   this.$store.commit('ADD',this.n);
-    // },
-    // decrement() {
-    //   this.$store.commit('SUB',this.n);
-    // },
-    ...mapMutations({increment:"ADD",decrement:"SUB"}),
-    // ...mapMutations(["ADD","SUB"]),
-  
-    // incrementOdd() {
-    //   this.$store.dispatch('addOdd',this.n);
-    // },
-    // incrementWait() {
-    //   this.$store.dispatch('addWait',this.n);
-    // },
-    ...mapActions({incrementOdd:"addOdd",incrementWait:"addWait"}),
-    // ...mapActions(["addOdd","addWait"])
+
+    ...mapMutations("CountOption",{increment:"ADD",decrement:"SUB"}),
+    // ...mapMutations({increment:"ADD",decrement:"SUB"}),
+
+    ...mapActions("CountOption", {incrementOdd:"addOdd",incrementWait:"addWait"}),
+    // ...mapActions({incrementOdd:"addOdd",incrementWait:"addWait"}),
+
   },
 };
 </script>

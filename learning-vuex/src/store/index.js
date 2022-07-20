@@ -5,60 +5,84 @@ import Vue from "vue";
 import Vuex from "vuex";
 Vue.use(Vuex)
 // prepare actions---use action in response components
-const actions={
-    // add:function(context,value){
-    //     console.log('add is invoked in actions',context ,value);
-    //     context.commit('ADD',value)
-    // },
-    // sub(context,value){
-    //     context.commit('SUB',value)
-    // },
-    addOdd(context,value){
-        if(context.state.sum % 2){
-            context.commit('ADD',value)
+const CountOption={
+    namespaced:true,
+    actions:{
+        addOdd(context,value){
+            if(context.state.sum % 2){
+                context.commit('ADD',value)
+            }
+        },
+        addWait(context,value){
+            setTimeout(()=>{
+                context.commit('ADD',value)
+            },500)
         }
     },
-    addWait(context,value){
-        setTimeout(()=>{
-            context.commit('ADD',value)
-        },500)
-    }
-}
-// prepare mutations---use to operate data  (state)
-const mutations ={
-    ADD(state,value){
-        console.log('add is invoked in mutations',state ,value);
-        state.sum+=value
+    mutations :{
+        ADD(state,value){
+            console.log('add is invoked in mutations',state ,value);
+            state.sum+=value
+        },
+        SUB(state,value){
+            state.sum-=value
+        },
     },
-    SUB(state,value){
-        state.sum-=value
+    state :{
+        sum: 0,
+        school:"uow",
+        subject:"CSCI927",
     },
-    ADD_PERSON(state,value){
-        state.personList.unshift(value)
-    }
+    getters:{
+        bigSum(state){
+            return state.sum*10
+        }
+    },
 }
-// prepare state---use to store data 
-const state ={
-    sum: 0,
-    school:"uow",
-    subject:"CSCI927",
-    personList:[
-        {id:"001",name:"Jerry"}
-    ]
+
+const PersonOption={
+    namespaced:true,
+    actions:{
+        addPersonLee(context,value){
+            if(value.name.indexOf('lee') === 0){
+                context.commit("ADD_PERSON",value)
+            }else{
+                alert("the first name of add person must be Lee")
+            }
+        }
+    },
+    mutations :{
+        ADD_PERSON(state,value){
+            state.personList.unshift(value)
+        }
+    },
+    state: {
+        personList:[
+            {id:"001",name:"Jerry"}
+        ]
+    },
+    getters:{
+        firstPersonName(state){
+            return state.personList[0].name
+        }
+    },
 }
-// prepare getters---use to process state
-const getters={
-    bigSum(state){
-        return state.sum*10
-    }
-}
+
+
+
+// // prepare getters---use to process state
+// const getters={
+//     bigSum(state){
+//         return state.sum*10
+//     }
+// }
 
 //create store
 const store =new Vuex.Store({
-    actions,
-    mutations,
-    state,
-    getters
+  modules:{
+    CountOption:CountOption,
+    PersonOption:PersonOption
+  }
 })
 
 export default store;
