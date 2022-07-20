@@ -8,6 +8,14 @@
 			"problemMatcher": [],
 			"label": "npm: serve - learn-vue/vue_test",
 			"detail": "vue-cli-service serve"
+		},
+		{
+			"type": "npm",
+			"script": "serve",
+			"path": "learning-vuex",
+			"problemMatcher": [],
+			"label": "npm: serve - learning-vuex",
+			"detail": "vue-cli-service serve"
 		}
 	]
 }
