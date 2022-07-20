@@ -10,15 +10,15 @@
       <option value="2">2</option>
       <option value="3">3</option>
     </select>
-    <button @click="increment">+</button>
-    <button @click="decrement">-</button>
-    <button @click="incrementOdd">当前求和为奇数再加</button>
-    <button @click="incrementWait">等一等再加</button>
+    <button @click="increment(n)">+</button>
+    <button @click="decrement(n)">-</button>
+    <button @click="incrementOdd(n)">当前求和为奇数再加</button>
+    <button @click="incrementWait(n)">等一等再加</button>
   </div>
 </template>
 
 <script>
-import {mapState,mapGetters} from 'vuex'
+import {mapState,mapGetters,mapActions,mapMutations} from 'vuex'
 export default {
   name: "MyCount",
   data() { 
@@ -33,28 +33,23 @@ export default {
     // ...mapGetters({bigSum:"bigSum"}),
   },
   methods: {
-    increment() {
-      // this.sum += this.n;
-      // this.$store.dispatch('add',this.n);
-      this.$store.commit('ADD',this.n);
-    },
-    decrement() {
-      // this.sum -= this.n;
-        // this.$store.dispatch('sub',this.n);
-      this.$store.commit('SUB',this.n);
-    },
-    incrementOdd() {
-      // if (this.$store.state.sum % 2) {
-      //   this.$store.dispatch('add',this.n);
-      // }
-      this.$store.dispatch('addOdd',this.n);
-    },
-    incrementWait() {
-      // setTimeout(() => {
-      //   this.$store.dispatch('add',this.n);
-      // }, 500);
-      this.$store.dispatch('addWait',this.n);
-    },
+    // increment() {
+    //   this.$store.commit('ADD',this.n);
+    // },
+    // decrement() {
+    //   this.$store.commit('SUB',this.n);
+    // },
+    ...mapMutations({increment:"ADD",decrement:"SUB"}),
+    // ...mapMutations(["ADD","SUB"]),
+  
+    // incrementOdd() {
+    //   this.$store.dispatch('addOdd',this.n);
+    // },
+    // incrementWait() {
+    //   this.$store.dispatch('addWait',this.n);
+    // },
+    ...mapActions({incrementOdd:"addOdd",incrementWait:"addWait"}),
+    // ...mapActions(["addOdd","addWait"])
   },
 };
 </script>
