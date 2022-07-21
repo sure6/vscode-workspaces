@@ -20,7 +20,7 @@
           >
         </li>
       </ul>
-      <!-- 如果不写include="组件名", 都缓存 -->
+      <!-- 如果不写include="组件名" 多个组件缓存,:include="[HomeNew,XXX]", 都缓存 -->
       <keep-alive include="HomeNew">
           <router-view> </router-view>
       </keep-alive>
