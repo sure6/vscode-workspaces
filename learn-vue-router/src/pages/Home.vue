@@ -20,7 +20,11 @@
           >
         </li>
       </ul>
-      <router-view> </router-view>
+      <!-- 如果不写include="组件名", 都缓存 -->
+      <keep-alive include="HomeNew">
+          <router-view> </router-view>
+      </keep-alive>
+
     </div>
   </div>
 </template>
