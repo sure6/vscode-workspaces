@@ -15,8 +15,9 @@
          <!-- <a class="list-group-item active" href="">About</a>
          <a class="list-group-item" href="">Home</a> -->
           <!--vue中借助router=link标签实现路由的切换-->
-         <router-link class="list-group-item" active-class="active" to="/about">About</router-link >
-         <router-link  class="list-group-item" active-class="active" to="/home">Home</router-link >
+          <!-- replace 模式就是干掉上次访问记录,替换为这次访问记录, 有点像无痕浏览, 控制浏览器的历史访问模式 -->
+         <router-link :replace="true" class="list-group-item" active-class="active" to="/about">About</router-link >
+         <router-link  replace class="list-group-item" active-class="active" to="/home">Home</router-link >
         </div>
       </div>
       <div class="col-xs-6">
