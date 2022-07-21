@@ -3,6 +3,7 @@
     <h2>这是About组件</h2>
     <div>
       <ul class="nav nav-tabs">
+
         <li>
           <router-link
             class="list-group-item"
