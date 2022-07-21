@@ -5,10 +5,12 @@ import Home from "../pages/Home.vue";
 
 import HomeNew from "../pages/HomeNew.vue";
 import HomeMsg from "../pages/HomeMsg.vue";
+import MesDetail from "../pages/MesDetail.vue";
 
 const router = new VueRouter({
     routes:[
         {
+            name:"guanyu",
             path:"/about",
             component:About
         },
@@ -22,7 +24,14 @@ const router = new VueRouter({
                 },
                 {
                     path:"message",
-                    component:HomeMsg
+                    component:HomeMsg,
+                    children:[
+                        {
+                            name:"xiangqin",
+                            path:"detail",
+                            component:MesDetail
+                        }
+                    ]
                 }
             ]
         }
