@@ -8,6 +8,8 @@ import HomeMsg from "../pages/HomeMsg.vue";
 import MesDetail from "../pages/MesDetail.vue";
 
 const router = new VueRouter({
+    // 路由器的工作模式, 默认为hash, 也就是有#/后面的的hash值, 它不会被后端给加载
+    mode:"history",
     routes:[
         {
             name:"guanyu",
