@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>这是About组件</h2>
+    <h2>这是Home组件</h2>
     <div>
       <ul class="nav nav-tabs">
 

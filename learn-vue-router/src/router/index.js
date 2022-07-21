@@ -12,19 +12,40 @@ const router = new VueRouter({
         {
             name:"guanyu",
             path:"/about",
-            component:About
+            component:About,
+            meta:{isAuth:true,title:"关于"}
         },
         {
+            name:"zhuye",
             path:"/home",
             component:Home,
+            meta:{title:"主页"},
             children:[
                 {
+                    name:"xinwen",
                     path:"news",
-                    component:HomeNew
+                    component:HomeNew,
+                    meta:{isAuth:true,title:"新闻"},
+                    // 独享前置守卫, 没有后置守卫, 要用后置守卫用全局
+                    // beforeEnter:(to, from, next)=>{
+                    //     console.log("@");
+                    //     console.log(to,from);
+                    //     if (to.meta.isAuth){
+                    //         if(localStorage.getItem("lee")==="sure"){
+                    //             next()
+                    //         }else{
+                    //             alert('localstorage name 都没有')
+                    //         }
+                    //     }else{
+                    //         next()
+                    //     } 
+                    // }
                 },
                 {
+                    name:"xiaoxi",
                     path:"message",
                     component:HomeMsg,
+                    meta:{isAuth:false,title:"消息"},
                     children:[
                         {
                             name:"xiangqin",
@@ -47,6 +68,34 @@ const router = new VueRouter({
             ]
         }
     ]
+})
+
+// 全局前置路由守卫(权限校验)--初始化的时候调用, 每次路由切换之前调用
+// router.beforeEach((to, from,next)=>{
+//     console.log("@");
+//     console.log(to,from);
+   
+//     // next();
+//     // if (to.path == '/home/news' || to.path.at('/home/message')){
+//     //     if(localStorage.getItem("todos")[0].name==="eating"){
+//     //         next()
+//     //     }
+//     // }
+//     if (to.meta.isAuth){
+//          if(localStorage.getItem("lee")==="sure"){
+//             next()
+//         }else{
+//             alert('localstorage name 都没有')
+//         }
+//     }else{
+//         next()
+//     }
+// })
+
+// 全局前置路由守卫(权限校验)--初始化的时候调用, 每次路由切换之前调用
+router.afterEach((to,from)=>{
+    console.log("@",to,from);
+    document.title = to.meta.title || "UOW system"
 })
 
 export default router;
