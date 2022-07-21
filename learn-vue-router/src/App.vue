@@ -3,23 +3,27 @@
     <div>
     <div class="row">
       <div class="col-xs-offset-2 col-xs-8">
-        <div class="page-header"><h2>Vue Router Demo</h2></div>
+        <div class="page-header">
+          <Banner></Banner>
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-xs-2 col-xs-offset-2">
         <div class="list-group">
           <!--原始使用a标签跳转多个页面,多页面应用-->
-         <a class="list-group-item active" href="./about.html">About</a>
-         <a class="list-group-item" href="./home.html">Home</a>
+         <!-- <a class="list-group-item active" href="">About</a>
+         <a class="list-group-item" href="">Home</a> -->
           <!--vue中借助router=link标签实现路由的切换-->
+         <router-link class="list-group-item" active-class="active" to="/about">About</router-link >
+         <router-link  class="list-group-item" active-class="active" to="/home">Home</router-link >
         </div>
       </div>
       <div class="col-xs-6">
         <div class="panel">
           <div class="panel-body">
             <!--router-view确定视图的位置-->
-            这是路由主页面
+            <router-view></router-view>
           </div>
         </div>
       </div>
@@ -29,8 +33,11 @@
 </template>
 
 <script>
-import About from './components/About.vue'
-import Home from './components/Home.vue'
+import About from './pages/About.vue'
+import Home from './pages/Home.vue'
+import Banner from './components/Banner.vue'
+
+    
 
 export default {
   name: 'App',
@@ -38,7 +45,8 @@ export default {
     // eslint-disable-next-line vue/no-unused-components
     Home,
     // eslint-disable-next-line vue/no-unused-components
-    About
-  }
+    About,
+    Banner
+}
 }
 </script>
