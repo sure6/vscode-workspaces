@@ -9,6 +9,8 @@ import MesDetail from "../pages/MesDetail.vue";
 
 const router = new VueRouter({
     // 路由器的工作模式, 默认为hash, 也就是有#/后面的的hash值, 它不会被后端给加载
+    // history 会出现在服务端访问是刷新页面会出现 Cannot GET /home/news
+    // hash 不会出现这种问题
     mode:"history",
     routes:[
         {
