@@ -2,6 +2,9 @@
 
 (function () {
     'use strict';
+
+    let isGoogle = location.origin == 'https://www.google.com';
+
     const images = [
         `https://variety.com/wp-content/uploads/2019/02/pubg-mobile-1.png`,
         `https://cdn.mos.cms.futurecdn.net/Tqq3BVZZAkbUyGvZmSfjQW.jpg`,
@@ -11,9 +14,6 @@
         `https://www.avenga.com/wp-content/uploads/2021/09/dota-2-header.jpeg`,
     ]
    
-   
-    let isGoogle = location.origin == 'https://www.google.com';
-
      //change button  in google search home page
      function changeButtonStyle(selector,num,styleObj){
         if ($(selector).get(num) && isGoogle) {
@@ -25,16 +25,25 @@
     //change background image in google search home page
     function changeBodyBackgrond(selector="body"){
 
-        let imgIndex=Math.floor(Math.random() * images.length);
-
         if (isGoogle && location.pathname == '/') {
+
             $(selector).css({
                 "width":"100%",
                 "height":"100%",
-                "background-image": "url(" + images[imgIndex] + ")",
+                "background-image": "url(" + images[Math.floor(Math.random() * images.length)] + ")",
                 "background-repeat": "no-repeat",
                 "background-size": "100% 100%"
             })
+
+            setInterval(()=>{
+                $(selector).css({
+                    "width":"100%",
+                    "height":"100%",
+                    "background-image": "url(" + images[Math.floor(Math.random() * images.length)] + ")",
+                    "background-repeat": "no-repeat",
+                    "background-size": "100% 100%"
+                })
+            },5000)
         }
     
     }
