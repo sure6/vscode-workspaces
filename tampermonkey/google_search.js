@@ -112,6 +112,37 @@
         })
 
     }
+
+    // 在google首页上加入快捷课程
+    function addMoodleCourse(text,href){
+        $gb_e = $("<div></div>")
+        $gb_e.addClass("gb_e gb_f")
+        $gb_d = $("<a>"+text+"</a>")
+        $gb_d.addClass("gb_d")
+        $gb_d.attr({
+            "data-pid":"23",
+            href: href,
+            target:"_blank"
+        })
+        
+        $gb_d.appendTo( $gb_e)
+        console.log($gb_e);
+        $('.gb_e')[0].before($gb_e.get(0))
+        $('.gb_d').css({
+            "color":"red",
+            "font-weight":"bold"
+        })
+    }
+
+    addMoodleCourse("moodle","https://moodle.uowplatform.edu.au/my/")
+    addMoodleCourse("CSIT985","https://moodle.uowplatform.edu.au/course/view.php?id=33234")
+    addMoodleCourse("CSCI935","https://moodle.uowplatform.edu.au/course/view.php?id=33193")
+    addMoodleCourse("CSIT998","https://moodle.uowplatform.edu.au/course/view.php?id=33017")
+    addMoodleCourse("CSCI927","https://moodle.uowplatform.edu.au/course/view.php?id=33534")
+    addMoodleCourse("CSCI946","https://moodle.uowplatform.edu.au/course/view.php?id=33013")
+    
+    
+
 })();
 
 /*
