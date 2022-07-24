@@ -115,9 +115,9 @@
 
     // 在google首页上加入快捷课程
     function addMoodleCourse(text,href){
-        $gb_e = $("<div></div>")
+        let $gb_e = $("<div></div>")
         $gb_e.addClass("gb_e gb_f")
-        $gb_d = $("<a>"+text+"</a>")
+        let $gb_d = $("<a>"+text+"</a>")
         $gb_d.addClass("gb_d")
         $gb_d.attr({
             "data-pid":"23",
@@ -126,7 +126,6 @@
         })
         
         $gb_d.appendTo( $gb_e)
-        console.log($gb_e);
         $('.gb_e')[0].before($gb_e.get(0))
         
     }
