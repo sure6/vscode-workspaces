@@ -131,11 +131,13 @@
     }
 
     addMoodleCourse("moodle","https://moodle.uowplatform.edu.au/my/")
+    addMoodleCourse("timetable","https://solss.uow.edu.au/sid/sols_tutorial_enrolment.my_timetable?P_STUDENT_NUMBER=6732409&P_SESSION_ID=&p_cs=24189084001212943044&")
     addMoodleCourse("CSIT985","https://moodle.uowplatform.edu.au/course/view.php?id=33234")
     addMoodleCourse("CSCI935","https://moodle.uowplatform.edu.au/course/view.php?id=33193")
     addMoodleCourse("CSIT998","https://moodle.uowplatform.edu.au/course/view.php?id=33017")
     addMoodleCourse("CSCI927","https://moodle.uowplatform.edu.au/course/view.php?id=33534")
     addMoodleCourse("CSCI946","https://moodle.uowplatform.edu.au/course/view.php?id=33013")
+    
     
     $('.gb_d').css({
         "color":"red",
