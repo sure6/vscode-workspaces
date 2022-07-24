@@ -128,10 +128,7 @@
         $gb_d.appendTo( $gb_e)
         console.log($gb_e);
         $('.gb_e')[0].before($gb_e.get(0))
-        $('.gb_d').css({
-            "color":"red",
-            "font-weight":"bold"
-        })
+        
     }
 
     addMoodleCourse("moodle","https://moodle.uowplatform.edu.au/my/")
@@ -140,6 +137,11 @@
     addMoodleCourse("CSIT998","https://moodle.uowplatform.edu.au/course/view.php?id=33017")
     addMoodleCourse("CSCI927","https://moodle.uowplatform.edu.au/course/view.php?id=33534")
     addMoodleCourse("CSCI946","https://moodle.uowplatform.edu.au/course/view.php?id=33013")
+    
+    $('.gb_d').css({
+        "color":"red",
+        "font-weight":"bold"
+    })
     
     
 
