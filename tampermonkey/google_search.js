@@ -137,6 +137,8 @@
     addMoodleCourse("CSIT998","https://moodle.uowplatform.edu.au/course/view.php?id=33017")
     addMoodleCourse("CSCI927","https://moodle.uowplatform.edu.au/course/view.php?id=33534")
     addMoodleCourse("CSCI946","https://moodle.uowplatform.edu.au/course/view.php?id=33013")
+    addMoodleCourse("UOW library","https://www.uow.edu.au/library/")
+    
     
     
     $('.gb_d').css({
