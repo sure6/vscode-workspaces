@@ -156,7 +156,7 @@ function modifyWords(name = "hello world", speed = 3, animation_style = "animate
     $h1Title = $("<h1>" + name + "</h1>");
     $h1Title.addClass("animate__animated animate__" + animation_style + " animate__infinite");
     $h1Title.attr("id", "motto")
-    $h1Title.css({ "font-size": "40px", "text-align": "center", color: "red", "line-height": "120px", "font-weight": "bold" })
+    $h1Title.css({ "font-size": "30px", "text-align": "center", color: "red", "line-height": "120px", "font-weight": "bold" })
     // 自定义动画速度
     $("head").append(`
     <style>
