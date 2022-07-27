@@ -6,12 +6,18 @@
     let isGoogle = location.origin == 'https://www.google.com';
 
     const images = [
-        `https://variety.com/wp-content/uploads/2019/02/pubg-mobile-1.png`,
-        `https://cdn.mos.cms.futurecdn.net/Tqq3BVZZAkbUyGvZmSfjQW.jpg`,
-        `https://editors.dexerto.com/wp-content/uploads/2021/12/14/league-of-legends-2022-patch-schedule-all-lol-season-12-updates-changes.jpg`,
+        // `https://variety.com/wp-content/uploads/2019/02/pubg-mobile-1.png`,
+        // `https://cdn.mos.cms.futurecdn.net/Tqq3BVZZAkbUyGvZmSfjQW.jpg`,
+        // `https://editors.dexerto.com/wp-content/uploads/2021/12/14/league-of-legends-2022-patch-schedule-all-lol-season-12-updates-changes.jpg`,
         `https://www.riotgames.com/darkroom/1440/08bcc251757a1f64e30e0d7e8c513d35:be16374e056f8268996ef96555c7a113/wr-cb1-announcementarticle-banner-1920x1080.png`,
-        `https://coolhdwall.com/storage/202101/pubg-frying-pan-playerunknowns-battlegrounds-4K-wallpaper-pc-preview.jpg`,
-        `https://www.avenga.com/wp-content/uploads/2021/09/dota-2-header.jpeg`,
+       // `https://coolhdwall.com/storage/202101/pubg-frying-pan-playerunknowns-battlegrounds-4K-wallpaper-pc-preview.jpg`,
+       // `https://www.avenga.com/wp-content/uploads/2021/09/dota-2-header.jpeg`,
+        `https://www.uow.edu.au/assets/curated/wollongong/aerial/Wollongong-Aerial-4-999x561.jpg`,
+        `https://misstourist.com/wp-content/uploads/2020/07/coastal-city-Things-to-do-in-Wollongong.jpg`,
+        `https://media-exp1.licdn.com/dms/image/C511BAQHww5QaQ0z-8Q/company-background_10000/0/1554329110724?e=2147483647&v=beta&t=nLbmIldbmZ2EX_pn-G_dGkTTpNY6lwJLG3woWJDBGFU`,
+        `https://cms.finnair.com/resource/blob/673242/3523a759b61b788b834fe56aa57fa255/sydney-main-data.jpg`,
+        `https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Sydney_Opera_House_-_Dec_2008.jpg/1200px-Sydney_Opera_House_-_Dec_2008.jpg`,
+        `https://st4.depositphotos.com/21607914/24186/i/600/depositphotos_241863528-stock-photo-view-lijiang-river-river-gulin.jpg`,
     ]
    
      //change button  in google search home page
