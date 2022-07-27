@@ -7,9 +7,9 @@
 
     const images = [
         // `https://variety.com/wp-content/uploads/2019/02/pubg-mobile-1.png`,
-        // `https://cdn.mos.cms.futurecdn.net/Tqq3BVZZAkbUyGvZmSfjQW.jpg`,
+         `https://cdn.mos.cms.futurecdn.net/Tqq3BVZZAkbUyGvZmSfjQW.jpg`,
         // `https://editors.dexerto.com/wp-content/uploads/2021/12/14/league-of-legends-2022-patch-schedule-all-lol-season-12-updates-changes.jpg`,
-        `https://www.riotgames.com/darkroom/1440/08bcc251757a1f64e30e0d7e8c513d35:be16374e056f8268996ef96555c7a113/wr-cb1-announcementarticle-banner-1920x1080.png`,
+        // `https://www.riotgames.com/darkroom/1440/08bcc251757a1f64e30e0d7e8c513d35:be16374e056f8268996ef96555c7a113/wr-cb1-announcementarticle-banner-1920x1080.png`,
        // `https://coolhdwall.com/storage/202101/pubg-frying-pan-playerunknowns-battlegrounds-4K-wallpaper-pc-preview.jpg`,
        // `https://www.avenga.com/wp-content/uploads/2021/09/dota-2-header.jpeg`,
         `https://www.uow.edu.au/assets/curated/wollongong/aerial/Wollongong-Aerial-4-999x561.jpg`,
