@@ -192,7 +192,7 @@ function modifyWords(name = "hello world", speed = 3, animation_style = "animate
 
         modifyModdleLogo();
 
-        modifyWords("Time and tide wait for no man.", 3.5, animation_styles["rubberBand"]);
+        modifyWords("Time and tide wait for no man.", 3.5, animation_styles["backInDown"]);
     }
 
 })();
