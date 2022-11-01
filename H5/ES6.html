@@ -4,7 +4,8 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<title>Document</title>
+	<title>ES5 vs ES6</title>
+	<!-- ES6 -->
 	<script>
 		// let 和 var 的作用域 let 块级作用域 。
 		// for循环还有一个特别之处，就是设置循环变量的那部分是一个父作用域，而循环体内部是一个单独的子作用域。
@@ -39,6 +40,18 @@
 	</script>
 </head>
 <body>
-	
+	<!--  ES5 -->
+	<script>
+		
+		function f() { console.log('I am outside!'); }
+
+		(function () {
+		  
+		  if (false) {
+			  function f() { console.log('I am inside!'); }
+		  }
+		  f();
+		}());
+	</script>
 </body>
 </html>
