@@ -27,29 +27,48 @@
         }
     }
 
-
+{/* <source src="file://E:/vscode-workspaces/tampermonkey/assets/video.webm" type="video/webm"></source> */}
     //change background image in google search home page
     function changeBodyBackgrond(selector="body"){
-
+        let videoTag=`<video autoplay loop id="dynamic">
+                            
+                            <source src="file://E:/vscode-workspaces/tampermonkey/assets/video.mp4" type="video/mp4">
+                        </video>`;
         if (isGoogle && location.pathname == '/') {
 
-            $(selector).css({
-                "width":"100%",
-                "height":"100%",
-                "background-image": "url(" + images[Math.floor(Math.random() * images.length)] + ")",
-                "background-repeat": "no-repeat",
-                "background-size": "100% 100%"
-            })
+            // $(selector).css({
+            //     "width":"100%",
+            //     "height":"100%",
+            //     "background-image": "url(" + images[Math.floor(Math.random() * images.length)] + ")",
+            //     "background-repeat": "no-repeat",
+            //     "background-size": "100% 100%"
+            // })
 
-            setInterval(()=>{
-                $(selector).css({
-                    "width":"100%",
-                    "height":"100%",
-                    "background-image": "url(" + images[Math.floor(Math.random() * images.length)] + ")",
-                    "background-repeat": "no-repeat",
-                    "background-size": "100% 100%"
-                })
-            },5000)
+            // setInterval(()=>{
+            //     $(selector).css({
+            //         "width":"100%",
+            //         "height":"100%",
+            //         "background-image": "url(" + images[Math.floor(Math.random() * images.length)] + ")",
+            //         "background-repeat": "no-repeat",
+            //         "background-size": "100% 100%"
+            //     })
+            // },5000)
+
+            $(selector).append(videoTag);
+            $('#dynamic').css({"position": "fixed",
+                                "top": "50%",
+                                "left": "50%",
+                                "min-width": "100%",
+                                "min-height": "100%",
+                                "width": "auto",
+                                "height": "auto",
+                                "z-index": "-100",
+                                "-ms-transform": "translateX(-50%) translateY(-50%)",
+                                "-moz-transform": "translateX(-50%) translateY(-50%)",
+                                "-webkit-transform" : "translateX(-50%) translateY(-50%)",
+                                "transform": "translateX(-50%) translateY(-50%)",
+                                "background": "url(polina.jpg) no-repeat",
+                                "background-size": "cover" });
         }
     
     }
