@@ -56,10 +56,27 @@
 
     //use background video in google search home page
     function useVideoBackground(selector="body"){
-        let videoTag=`<video src="https://edge.ivideo.sina.com.cn/34157511002.mp4?KID=sina,viask&Expires=1668441600&ssig=wAMD7OKP9W&reqid=&r=video.sina.com.cn%2Fview%2F341575110.html" muted="muted" loop="loop" autoplay="autoplay" width="100%" style="position: fixed; right:0; bottom:0;
+      
+        let videoTag=`<video src="https://edge.ivideo.sina.com.cn/34157511002.mp4?KID=sina,viask&Expires=1668441600&ssig=wAMD7OKP9W&reqid=&r=video.sina.com.cn%2Fview%2F341575110.html" 
+        id="bgvideo" autoplay muted loop="loop" width="100%" style="position: fixed; right:0; bottom:0;
         background-size: cover; z-index: -100;"></video>`;
+        let playBtn=`<a class="ui-icon ui-icon-volume-off" style="background-color:yellow; cursor:pointer"></a>`;
         if (isGoogle && location.pathname == '/') {
+            
+            $('head').append(`<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/themes/base/jquery-ui.min.css" integrity="sha512-ELV+xyi8IhEApPS/pSj66+Jiw+sOT1Mqkzlh8ExXihe4zfqbWkxPRi8wptXIO9g73FSlhmquFlUOuMSoXz5IRw==" crossorigin="anonymous" referrerpolicy="no-referrer" />`);
             $(selector).append(videoTag);
+            $(".MV3Tnb").eq(0).before(playBtn);
+            $('.ui-icon-volume-off').on('click',  function() {
+        
+                if(document.getElementById("bgvideo").muted){
+                    document.getElementById("bgvideo").muted = false;
+                    this.setAttribute("class","ui-icon ui-icon-volume-on");
+                }else{
+                    document.getElementById("bgvideo").muted = true;
+                    this.setAttribute("class","ui-icon ui-icon-volume-off");
+                }
+            })
+        
         }
     }
     changeButtonStyle('.gNO89b',1,{"background-color":"palegreen"});
@@ -152,7 +169,7 @@
     addMoodleCourse("timetable","https://solss.uow.edu.au/sid/sols_tutorial_enrolment.my_timetable?P_STUDENT_NUMBER=6732409&P_SESSION_ID=&p_cs=24189084001212943044&")
     addMoodleCourse("CSIT998","https://moodle.uowplatform.edu.au/course/view.php?id=33017")
     
-    $('.gb_d').css({
+    $('.gb_d, .MV3Tnb').css({
         "color":"red",
         "font-weight":"bold"
     })
