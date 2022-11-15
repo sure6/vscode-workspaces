@@ -1,0 +1,52 @@
+{
+    "name": "chrome-plugin",
+    "version": "1.0",
+    "description": "Build an Extension!",
+    "manifest_version": 3,
+    "permissions": [
+        "declarativeContent", 
+        "storage", 
+        "tabs",
+        "contextMenus"
+    ],
+    "host_permissions": [
+        "https://*.google.com/*"
+      ],
+    "externally_connectable": {
+        "matches": ["*://*.xxxxxx.com/*"]
+    },
+    "background": {
+        "service_worker": "service-worker.js"
+    },
+    "content_scripts": [
+        {
+          "matches": ["https://*.google.com/*"],
+          "js": ["js/jquery_3.6.1.js", "js/content.js"],
+          "css": ["css/demo.css"],
+          "run_at": "document_end"
+        }
+    ],
+    "web_accessible_resources": [
+        {
+            "matches": ["https://*.google.com/*"],
+            "resources": ["images/*","js/jquery_3.6.1.js","js/inject.js"],
+            "use_dynamic_url": true
+        }
+    ],
+    "action":{
+        "default_popup": "popup.html",
+        "default_icon": "images/1.png",
+        "default_title": "Latest Covid Report"
+    },
+    "icons": {
+        "16": "images/1.png",
+        "32": "images/1.png",
+        "48": "images/1.png",
+        "128": "images/1.png"
+    },
+    "chrome_url_overrides":{
+        "newtab": "popup.html"
+    },
+    "devtools_page": "devtools.html"
+
+}
