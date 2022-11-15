@@ -57,7 +57,7 @@
     //use background video in google search home page
     function useVideoBackground(selector="body"){
       
-        let videoTag=`<video src="https://edge.ivideo.sina.com.cn/34157511002.mp4?KID=sina,viask&Expires=1668441600&ssig=wAMD7OKP9W&reqid=&r=video.sina.com.cn%2Fview%2F341575110.html" 
+        let videoTag=`<video src="https://edge.ivideo.sina.com.cn/34157511002.mp4?KID=sina,viask&Expires=1668614400&ssig=lOpX2lDaKO&reqid=&r=video.sina.com.cn%2Fview%2F341575110.html" 
         id="bgvideo" autoplay muted loop="loop" width="100%" style="position: fixed; right:0; bottom:0;
         background-size: cover; z-index: -100;"></video>`;
         let playBtn=`<a class="ui-icon ui-icon-volume-off" style="background-color:yellow; cursor:pointer"></a>`;
