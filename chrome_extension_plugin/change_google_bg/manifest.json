@@ -1,0 +1,47 @@
+{
+    "name": "change google background",
+    "version": "1.0",
+    "description": "change google search webpage background!",
+    "manifest_version": 3,
+    "permissions": [
+        "declarativeContent", 
+        "scripting",
+        "storage", 
+        "tabs",
+        "contextMenus",
+        "notifications",
+        "activeTab"
+    ],
+    "host_permissions": [
+        "https://www.google.com/*"
+     ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+          "matches": ["https://www.google.com/"],
+          "js": ["js/jquery_3.6.1.js", "js/home.js"],
+          "css": ["css/home.css"],
+          "run_at": "document_end"
+        },
+        {
+            "matches": ["https://www.google.com/*"],
+            "js": ["js/jquery_3.6.1.js", "js/search_result.js"],
+            "css": ["css/search_result.css"],
+            "run_at": "document_end"
+          }
+    ],
+    "icons": {
+        "16": "images/1.png",
+        "32": "images/1.png",
+        "48": "images/1.png",
+        "128": "images/1.png"
+    },
+    "action":{
+        "default_popup": "popup.html",
+        "default_icon": "images/1.png",
+        "default_title": "setting add content"
+    }
+
+}
