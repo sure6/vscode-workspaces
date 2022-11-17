@@ -1,6 +1,6 @@
 {
     "name": "change google background",
-    "version": "1.0",
+    "version": "1.0.0",
     "description": "change google search webpage background!",
     "manifest_version": 3,
     "permissions": [
