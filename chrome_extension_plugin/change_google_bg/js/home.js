@@ -70,9 +70,9 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
     
 })
 
-function changeVideoBackground(video_src){
-    $("#bgvideo").attr("src",video_src)
-}
+// function changeVideoBackground(video_src){
+//     $("#bgvideo").attr("src",video_src)
+// }
 
 //use background video in google search home page
 function useVideoBackground(selector = "body", video_src="https://edge.ivideo.sina.com.cn/34157511002.mp4?KID=sina,viask&Expires=1668614400&ssig=lOpX2lDaKO&reqid=&r=video.sina.com.cn%2Fview%2F341575110.html") {

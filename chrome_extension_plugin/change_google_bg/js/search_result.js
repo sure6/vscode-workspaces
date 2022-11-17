@@ -1,7 +1,31 @@
 // 可以操作当前页面中的DOM
 $(document).ready(function () {
-    div_content()
+    
+    chrome.storage.sync.get("message",function(items){
+    
+        if(items.message==null || items.message == undefined){
+            return;
+        }
+  
+        if(items.message.logo!=""){
+            div_content(logo_url=items.message.logo);
+        }
+        
+    });
+
 });
+
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse){
+
+    if(request){
+        location.reload();
+        sendResponse("have responsed");
+    }else{
+        sendResponse("response failed");
+    }    
+    
+})
+
 
 function div_content(logo_url = 'https://www.uow.edu.au/assets/uow-channel/public/site-assets/images/logo/logo.svg', set_target=true) {
     // modify the google logo

@@ -8,34 +8,37 @@ function sendMessageToContentScript(message, callback) {
 
 $(document).ready(function () {
 
+
+    // fill the popup.html input
     chrome.storage.local.get("temp", items => {
         console.log('items', items.temp)
-        if(items.temp != undefined || items.temp != null){
-            if(items.temp.url != ""){
+        if (items.temp != undefined || items.temp != null) {
+            if (items.temp.url != "") {
                 document.getElementById('videoUrl').value = items.temp.url;
-            }else{
+            } else {
                 document.getElementById('videoUrl').value = "";
             }
-            if(items.temp.linkname != ""){
+
+            if (items.temp.linkname != "") {
                 document.getElementById('linkName').value = items.temp.linkname;
-            }else{
+            } else {
                 document.getElementById('linkName').value = "";
             }
-    
-            if(items.temp.linkaddress != ""){
+
+            if (items.temp.linkaddress != "") {
                 document.getElementById('link').value = items.temp.linkaddress;
-            }else{
+            } else {
                 document.getElementById('link').value = "";
             }
-            if(items.temp.logo != ""){
+            if (items.temp.logo != "") {
                 document.getElementById('logo').value = items.temp.logo;
-            }else{
+            } else {
                 document.getElementById('logo').value = "";
             }
         }
-        
-      })
-      
+
+    });
+
     execution();
 
 })
@@ -47,11 +50,10 @@ function execution() {
         let link_val = $('#link').val();
         let logo_val = $('#logo').val();
         let linkName_val = $('#linkName').val();
-        let link_arr=[]
+        let link_arr = []
         let message = { video: video_val, link_address: link_arr, logo: logo_val };
-        
+
         chrome.storage.sync.get("message", function (items) {
-            console.log(items.message);
             if (items.message == undefined || items.message == null) {
                 chrome.storage.sync.set({ "message": message }, function () {
                     console.log("save successfully!");
@@ -59,56 +61,64 @@ function execution() {
                         console.log(response);
                     });
                 });
-            }else{
-               if(video_val!=""){
-                items.message.video=video_val;
-               }
-               if(linkName_val!="" && link_val!=""){
-                items.message.link_address.push({linkName: linkName_val,link: link_val });
-               }
-               if(logo_val!=""){
-                items.message.logo=logo_val;
-               }
-               chrome.storage.sync.set({ "message": items.message }, function () {
+            } else {
+                if (video_val != "") {
+                    items.message.video = video_val;
+                }
+                if (linkName_val != "" && link_val != "") {
+                    items.message.link_address.push({ linkName: linkName_val, link: link_val });
+                }
+                if (logo_val != "") {
+                    items.message.logo = logo_val;
+                }
+                chrome.storage.sync.set({ "message": items.message }, function () {
                     console.log("save successfully!");
                     sendMessageToContentScript(true, function (response) {
                         console.log(response);
                     });
-               });
+                });
             }
         });
-
-        
+        clear_input();
+        alert("SET OK!!")
     });
 
     $('#cancel').click(function () {
-        $('#videoUrl').val() = "";
-        $('#link').val() = "";
-        $('#logo').val() = "";
-    })
+        clear_input();
+    });
 }
 
-let temp={url:"", linkname:"",linkaddress:"",logo:""}
+function clear_input() {
+    $('#videoUrl').val("");
+    $('#linkName').val("");
+    $('#link').val("");
+    $('#logo').val("");
+    let temp = { url: "", linkname: "", linkaddress: "", logo: "" }
+    chrome.storage.local.set({ "temp": temp });
+}
+
+// fill the popup.html input
+let temp = { url: "", linkname: "", linkaddress: "", logo: "" }
 document.getElementById('videoUrl').addEventListener('input', e => {
-  let url = e.target.value;
-  temp.url=url;
-  chrome.storage.local.set({"temp":temp});
+    let url = e.target.value;
+    temp.url = url;
+    chrome.storage.local.set({ "temp": temp });
 });
 
 document.getElementById('linkName').addEventListener('input', e => {
     let linkName = e.target.value;
-    temp.linkname=linkName;
-    chrome.storage.local.set({"temp":temp});
+    temp.linkname = linkName;
+    chrome.storage.local.set({ "temp": temp });
 });
 document.getElementById('link').addEventListener('input', e => {
     let link = e.target.value;
-    temp.linkaddress=link;
-    chrome.storage.local.set({"temp":temp});
+    temp.linkaddress = link;
+    chrome.storage.local.set({ "temp": temp });
 });
 
 document.getElementById('logo').addEventListener('input', e => {
-  let logo = e.target.value;
-  temp.logo=logo;
-  chrome.storage.local.set({"temp":temp});
+    let logo = e.target.value;
+    temp.logo = logo;
+    chrome.storage.local.set({ "temp": temp });
 });
 
