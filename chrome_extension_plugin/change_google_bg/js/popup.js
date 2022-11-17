@@ -10,26 +10,28 @@ $(document).ready(function () {
 
     chrome.storage.local.get("temp", items => {
         console.log('items', items.temp)
-        if(items.temp.url != ""){
-            document.getElementById('videoUrl').value = items.temp.url;
-        }else{
-            document.getElementById('videoUrl').value = "";
-        }
-        if(items.temp.linkname != ""){
-            document.getElementById('linkName').value = items.temp.linkname;
-        }else{
-            document.getElementById('linkName').value = "";
-        }
-
-        if(items.temp.linkaddress != ""){
-            document.getElementById('link').value = items.temp.linkaddress;
-        }else{
-            document.getElementById('link').value = "";
-        }
-        if(items.temp.logo != ""){
-            document.getElementById('logo').value = items.temp.logo;
-        }else{
-            document.getElementById('logo').value = "";
+        if(items.temp != undefined || items.temp != null){
+            if(items.temp.url != ""){
+                document.getElementById('videoUrl').value = items.temp.url;
+            }else{
+                document.getElementById('videoUrl').value = "";
+            }
+            if(items.temp.linkname != ""){
+                document.getElementById('linkName').value = items.temp.linkname;
+            }else{
+                document.getElementById('linkName').value = "";
+            }
+    
+            if(items.temp.linkaddress != ""){
+                document.getElementById('link').value = items.temp.linkaddress;
+            }else{
+                document.getElementById('link').value = "";
+            }
+            if(items.temp.logo != ""){
+                document.getElementById('logo').value = items.temp.logo;
+            }else{
+                document.getElementById('logo').value = "";
+            }
         }
         
       })
