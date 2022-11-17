@@ -1,4 +1,4 @@
-// 可以操作当前页面中的DOM
+// You can manipulate the DOM in the current page
 $(document).ready(function () {
 
     
