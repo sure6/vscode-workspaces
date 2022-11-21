@@ -59,15 +59,15 @@
     <div id="leesure"></div>
     <input type="text">
 
-    <audio id="music" src="http://win.web.ra01.sycdn.kuwo.cn/a1e0e2d474ca44a14d4309f4e925c667/6371aeab/resource/n3/128/18/92/1680986580.mp3?autoplay=1"  autoplay loop controls >
-    </audio>
+    <!-- <audio id="music" src="http://win.web.ra01.sycdn.kuwo.cn/a1e0e2d474ca44a14d4309f4e925c667/6371aeab/resource/n3/128/18/92/1680986580.mp3?autoplay=1"  autoplay loop controls >
+    </audio> -->
     <!-- <iframe
         src="http://win.web.ra01.sycdn.kuwo.cn/a1e0e2d474ca44a14d4309f4e925c667/6371aeab/resource/n3/128/18/92/1680986580.mp3?autoplay=1"
         style="opacity: 1;" id="video" frameborder="0" sandbox allowfullscreen autoplay=1, allow="autoplay"
     ></iframe> -->
 
 
-    <script>
+    <!-- <script>
         function playMusic(){
             var promise = document.querySelector('audio').play();
             if (promise !== undefined) {
@@ -89,6 +89,51 @@
             
         }
         
+    </script> -->
+    <video id="v"></video>
+    <script>
+        !(function () {
+            // 老的浏览器可能根本没有实现 mediaDevices，所以我们可以先设置一个空的对象
+            if (navigator.mediaDevices === undefined) {
+                navigator.mediaDevices = {};
+            }
+            if (navigator.mediaDevices.getUserMedia === undefined) {
+                navigator.mediaDevices.getUserMedia = function (constraints) {
+                    // 首先，如果有getUserMedia的话，就获得它
+                    var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+
+                    // 一些浏览器根本没实现它 - 那么就返回一个error到promise的reject来保持一个统一的接口
+                    if (!getUserMedia) {
+                        return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
+                    }
+
+                    // 否则，为老的navigator.getUserMedia方法包裹一个Promise
+                    return new Promise(function (resolve, reject) {
+                        getUserMedia.call(navigator, constraints, resolve, reject);
+                    });
+                }
+            }
+            const constraints = {
+                video: true,
+                audio: false
+            };
+            let promise = navigator.mediaDevices.getUserMedia(constraints);
+            promise.then(stream => {
+                let v = document.getElementById('v');
+                // 旧的浏览器可能没有srcObject
+                if ("srcObject" in v) {
+                    v.srcObject = stream;
+                } else {
+                    // 防止再新的浏览器里使用它，应为它已经不再支持了
+                    v.src = window.URL.createObjectURL(stream);
+                }
+                v.onloadedmetadata = function (e) {
+                    v.play();
+                };
+            }).catch(err => {
+                console.error(err.name + ": " + err.message);
+            })
+        })();
     </script>
 </body>
 
