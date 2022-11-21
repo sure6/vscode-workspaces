@@ -23,13 +23,13 @@
           "matches": ["https://www.google.com/"],
           "js": ["js/jquery_3.6.1.js", "js/home.js"],
           "css": ["css/home.css"],
-          "run_at": "document_end"
+          "run_at": "document_start"
         },
         {
             "matches": ["https://www.google.com/*"],
             "js": ["js/jquery_3.6.1.js", "js/search_result.js"],
             "css": ["css/search_result.css"],
-            "run_at": "document_end"
+            "run_at": "document_start"
           }
     ],
     "icons": {
