@@ -25,12 +25,6 @@ $(document).ready(function () {
 
     });
 
-    // addMoodleCourse("moodle","https://moodle.uowplatform.edu.au/my/")
-    // addMoodleCourse("UOW library","https://www.uow.edu.au/library/")
-    // addMoodleCourse("Zulipchat","https://uow-csit998-22-23.zulipchat.com/#")
-
-    // addMoodleCourse("timetable","https://solss.uow.edu.au/sid/sols_tutorial_enrolment.my_timetable?P_STUDENT_NUMBER=6732409&P_SESSION_ID=&p_cs=24189084001212943044&")
-    // addMoodleCourse("CSIT998","https://moodle.uowplatform.edu.au/course/view.php?id=33017")
 });
 
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
@@ -41,39 +35,9 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
     } else {
         sendResponse("response failed");
     }
-    // let video="";
-    // let link_name="";
-    // let link="";
-    // chrome.storage.sync.get(request,function(items){
-    //     items.forEach(element => {
-    //         if (element.video=="video"){
-    //             video=element.value1;
-    //         }
-    //         if (element.linkName=="linkName"){
-    //             link_name=element.value2;
-    //         }
-    //         if (element.link=="link"){
-    //             link=element.value3;
-    //         }
-    //     });
-
-    // });
-
-    // if(video != ""){
-    //     changeVideoBackground(video); 
-    // }
-    // if(link_name != "" && link!=""){
-    //     addMoodleCourse(link_name,link);
-    // }else{
-    //     sendResponse("link name and link address must be not empty!!")
-    // }
-
 
 })
 
-// function changeVideoBackground(video_src){
-//     $("#bgvideo").attr("src",video_src)
-// }
 
 //use background video in google search home page
 function useVideoBackground(selector = "body", videoTag = `<iframe width="951" height="713" src="https://www.youtube.com/embed/N2DkKFxijv0?autoplay=1" title="周杰倫 Jay Chou【對不起 Sorry】Official MV" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`) {
