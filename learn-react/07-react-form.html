@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>07-react-form</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.9/babel.min.js"
+        integrity="sha512-DbLQpxPqGlybyPm4AXtV/+FsSw0J5JEHVqJmgNIrjyvxrvFJRhUgG/lKcviUwFQNKSdje3ngo4i0Ga+HAbtreA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Hello extends React.Component {
+            state = {
+                name: "leesure",
+                gender:"1",
+                select:"B",
+                text:"Hello, world",
+                nameError:""
+            }
+            handleSubmit=()=>{
+                let {name,gender,select,text} = this.state
+                let data= {name,gender,select,text}
+                alert(JSON.stringify(data))
+            }
+            // handleInput=(e)=>{
+            //     this.setState({name: e.target.value})
+            // }
+            // handleRadio=(e)=>{
+            //     this.setState({gender: e.target.value})
+            // }
+            // handleSelect=(e)=>{
+            //     this.setState({select: e.target.value})
+            // }
+            // handleTextarea=(e)=>{
+            //     this.setState({text: e.target.value})
+            // }
+            handleChange=(e)=>{
+                this.setState({[ e.target.name]: e.target.value})
+            }
+
+            handleVerification(e,info1,info2){
+                let {name, value} =e.target
+                let rule=new RegExp(e.target.getAttribute("rule"))
+                let error=""
+                if(!value){
+                    error=info1
+                }else if(!rule.test(value)){
+                    error=info2
+                }else{
+                    error=""
+                }
+                this.setState({[name]:value, [name+"Error"]:error})            }
+            render() {
+                let { name, gender,select,text,nameError } = this.state
+                let arr1=['D','E', 'F']
+                let arr2=[{id:1, color:"red"},{id:2, color:"blue"}]
+                return <div>
+                    <form action="">
+                        <label>name:
+                            <input type="text" defaultValue={name} name="name" onChange={(e)=>this.handleVerification(e,"please input name","please input name length between 4 and 10")} rule="^[a-zA-Z0-9_-]{4,10}$"/>
+                            <span>{nameError}</span>
+                        </label><br/>
+                        <label>gender:
+                            <input type="radio" name="sex" value="1" defaultChecked={gender==="1" ? true: false} onChange={this.handleChange}/>male
+                            <input type="radio" name="sex" value="2" defaultChecked={gender==="2" ? true: false} onChange={this.handleChange}/>female
+                        </label><br/>
+                        <label>option:
+                            <select name="select"  defaultValue={select} onChange={this.handleChange}>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                {/* 用循环写出每一项, 复杂数组, 数组里 是对象的 */}
+                                {
+                                    arr1.map((item,index)=>{
+                                        return <option key={index} value={item}>{item}</option> 
+                                    })
+                                }
+                                {
+                                    arr2.map((item,index)=>{
+                                        return <option key={item.id} value={item.id}>{item.color}</option> 
+                                    })
+                                }
+                            </select>
+                        </label><br/>
+                        <label>comments:
+                            <textarea defaultValue={text} onChange={this.handleChange} name="text"></textarea>
+                        </label><br/>
+                        {/*设置禁用*/}
+                        <button disabled={!name} onClick={this.handleSubmit}>submit</button>
+                    </form>
+                </div>
+            }
+        }
+        ReactDOM.render(<Hello />, document.getElementById("root"))
+    </script>
+</body>
+
+</html>

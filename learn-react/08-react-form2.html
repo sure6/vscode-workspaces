@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>08-react-form2</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.9/babel.min.js"
+        integrity="sha512-DbLQpxPqGlybyPm4AXtV/+FsSw0J5JEHVqJmgNIrjyvxrvFJRhUgG/lKcviUwFQNKSdje3ngo4i0Ga+HAbtreA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        class Hello extends React.Component {
+            state = {
+                name: "",
+                username:"",
+                password:""
+            }
+            handleSubmit=()=>{
+                alert(JSON.stringify(this.state))
+            }
+            handleInput=(e)=>{
+                this.setState({[e.target.name]: e.target.value})
+            }
+            render() {
+                let { name, username,password } = this.state
+                return <div>
+                    <form action="">
+                        <label>name:
+                            <input type="text" defaultValue={name} name="name" onChange={this.handleInput}/>
+                        </label><br/>
+                        <label>username:
+                            <input type="text" defaultValue={username} name="username" onChange={this.handleInput}/>
+                        </label><br/>
+                        <label>password:
+                            <input type="text" defaultValue={password} name="password" onChange={this.handleInput}/>
+                        </label><br/>
+                        <button onClick={this.handleSubmit}>submit</button>
+                    </form>
+                </div>
+            }
+        }
+        ReactDOM.render(<Hello />, document.getElementById("root"))
+    </script>
+</body>
+
+</html>

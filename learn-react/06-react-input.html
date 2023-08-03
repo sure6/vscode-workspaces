@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>06-react-input</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.9/babel.min.js"
+        integrity="sha512-DbLQpxPqGlybyPm4AXtV/+FsSw0J5JEHVqJmgNIrjyvxrvFJRhUgG/lKcviUwFQNKSdje3ngo4i0Ga+HAbtreA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // 受限组件: 制定value值后, 不能输入值, vue实现相应式但是react需要手动实现双向数据绑定
+        class Hello extends React.Component {
+            render() {
+                return <input type="text" value="3" />
+            }
+        }
+        ReactDOM.render(<Hello />, document.getElementById("root"))
+    </script>
+    <hr>
+    <div id="root1"></div>
+    <script type="text/babel">
+
+        class Hello extends React.Component {
+            state = {
+                value: 123
+            }
+            change = (e) => {
+                console.log(e.target.value)
+                this.setState({ value: e.target.value })
+            }
+            render() {
+                return <div>
+                    <input type="text" value={this.state.value} onChange={this.change} />
+                    <p>{this.state.value}</p>
+                </div>
+            }
+        }
+        ReactDOM.render(<Hello />, document.getElementById("root1"))
+    </script>
+    <!-- radio, checkbox, textarea, select -->
+    <hr>
+    <div id="root3"></div>
+    <script type="text/babel">
+
+        class Rts extends React.Component {
+            
+            render() {
+                return <div>
+                    <input type="radio" checked />
+                    <input type="checkbox" checked />
+                    <input type="checkbox" checked />
+                    <input type="checkbox" checked />
+                    <select >
+                        <option value="A" >A</option>
+                        <option value="B" selected>B</option>
+                        <option value="C">C</option>
+                    </select>
+                </div>
+            }
+        }
+        ReactDOM.render(<Rts />, document.getElementById("root3"))
+    </script>
+
+    <hr>
+     <!--非受限组件: 没有制定value值 -->
+     <div id="root4"></div>
+    <script type="text/babel">
+
+        class Rts extends React.Component {
+            state = {
+                value: 12345
+            }
+            change = (e) => {
+                console.log(e.target.value)
+                this.setState({ value: e.target.value })
+            }
+            // defaultValue, checkbox和radio类型就用defaultChecked, 在select标签上添加defaultValue=xxx. 
+            // 如果选择多个就必须在select中添加defaultValue={[xxx,xxx,xxx]}和mutiple={true}
+            render() {
+                return <div>
+                    <input type="text" />
+            
+                    <input type="text" defaultValue={this.state.value} onChange={this.change}/>
+                    <p>{this.state.value}</p>
+                </div>
+            }
+        }
+        ReactDOM.render(<Rts />, document.getElementById("root4"))
+    </script>
+</body>
+
+</html>
