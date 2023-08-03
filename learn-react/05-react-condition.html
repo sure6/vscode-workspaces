@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.9/babel.min.js"
+        integrity="sha512-DbLQpxPqGlybyPm4AXtV/+FsSw0J5JEHVqJmgNIrjyvxrvFJRhUgG/lKcviUwFQNKSdje3ngo4i0Ga+HAbtreA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        function Login(props){
+            return <button onClick={props.update}>子组件login</button>
+        }
+        function Logout(props){
+            return <button onClick={props.update}>子组件logout</button>
+        }
+        class APP extends React.Component{
+            state={
+                isLogin: false,
+            
+            }
+            updateState=()=>{
+                this.setState({isLogin: !this.state.isLogin})
+            }
+            render() {
+                //const isLogin=this.state.isLogin
+                const {isLogin}=this.state // 在状态比较多的时候, 采用结构体形式
+                // 根据状态不同的值去加载不同的组件, 如果是true就加载登录组件, 如果是false就加载登出组件.
+                return <div>
+                    <h1>this is component that have state</h1>
+                    {isLogin?<Login update={this.updateState}/>: <Logout update={this.updateState}/>}
+                    <button onClick={this.updateState}>update state</button>
+                    </div>
+            }
+        }
+        ReactDOM.render(<APP/>, document.getElementById("root"))
+    </script>
+</body>
+</html>

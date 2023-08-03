@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_react_state</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.9/babel.min.js" 
+    integrity="sha512-DbLQpxPqGlybyPm4AXtV/+FsSw0J5JEHVqJmgNIrjyvxrvFJRhUgG/lKcviUwFQNKSdje3ngo4i0Ga+HAbtreA==" 
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+<body>
+    <div id="container"></div>
+    
+    <script type="text/babel">
+        // 函数式组件是无状态组件,不存在state, 只有props, 它没有生命周期函数
+        function Hello(props){
+            // function component
+            return <div>
+            <h1>hello sure</h1>
+            <p>name:{props.name}</p>
+            <p>age:{props.age}</p>
+            </div>
+        }
+
+        ReactDOM.render(<Hello name="leesure" age='14'/>, document.getElementById("container"))
+    </script>
+</body>
+</html>

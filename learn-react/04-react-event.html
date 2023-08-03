@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>04_react_event</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.9/babel.min.js"
+        integrity="sha512-DbLQpxPqGlybyPm4AXtV/+FsSw0J5JEHVqJmgNIrjyvxrvFJRhUgG/lKcviUwFQNKSdje3ngo4i0Ga+HAbtreA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+<!--  -->
+    <script type="text/babel">
+        class Hello extends React.Component {
+
+            constructor(){
+                super()
+                this.state={
+                    name:"world",
+                    age: 13,
+                    sex: "male",
+                    flag:true
+                }
+                // this 指向第一种写法
+                this.updateAge=this.updateAge.bind(this)
+                // this.updateFlag=this.updateFlag.bind(this)
+            }
+            // react中必须使用preventDefault来阻止默认事件, 不能return false来阻止默认事件
+            updateAge(e){
+                e.preventDefault();
+                console.log(this)
+                this.setState({age:this.state.age+1})
+            }
+            updateFlag(){
+                console.log(this)
+                this.setState({flag:!this.state.flag})
+            }
+                        // this 指向第2,3,4种写法,
+            updateName(){
+                this.setState({name: "zhangwuji"})
+            }
+            updateSex=()=>{
+                this.setState({sex: "female"})
+            }
+            render() {
+                // this 指向第2,3,4种写法,
+{}                console.log(this)
+                return (<div><h1>hello world</h1>
+                    <p>name:{this.state.name}</p>
+                    <p>age:{this.state.age}</p>
+                    <p>sex: {this.state.sex}</p>
+                    <p>postion:frontend dev</p>
+                    <button onClick={this.updateAge}>go</button>
+                    <button onClick={this.updateFlag.bind(this)}>{this.state.flag?"yes": "no"}</button>
+                    <button onClick={() => this.updateName()}>modify name</button>
+                    <button onClick={this.updateSex}>modify sex</button>
+                    </div>)
+
+            }
+        }
+
+        ReactDOM.render(<Hello />, document.getElementById("container"))
+    </script>
+    
+
+</body>
+
+</html>

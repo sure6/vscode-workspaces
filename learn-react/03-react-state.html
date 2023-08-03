@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>02_react_state</title>
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.22.9/babel.min.js"
+        integrity="sha512-DbLQpxPqGlybyPm4AXtV/+FsSw0J5JEHVqJmgNIrjyvxrvFJRhUgG/lKcviUwFQNKSdje3ngo4i0Ga+HAbtreA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<body>
+    <div id="container"></div>
+
+    <script type="text/babel">
+        // 有状态组件必须使用类来定义并继承React.Component, 它同时有state和props
+        class Hello extends React.Component {
+
+            //state简写方式, 开发中常用
+            state={
+                name:"world",
+                age: 13
+            }
+            
+            // constructor(props){
+            //     // 子类必须在constructor中调用super(), 从而获得父类的this对象 super是把属性转递给父级构造对象
+            //     super(props)
+            //     this.state={
+            //         name:"leesure1",
+            //         age:18
+            //     }
+            //     // 需要在构造函数中使用this.props/props则在构造器和super()中添加props参数
+            //     // 如果不需要传值就不用super中接受props
+            //     console.log(this.props)
+            // }
+
+            // render是生命周期里面非常基础和底层方法,一定要用它来render
+            // 在有状态组件中props必须用this.props
+            render() {
+                return (<div><h1>hello world</h1>
+                    <p>name:{this.state.name}</p>
+                    <p>age:{this.state.age}</p>
+                    <p>postion:frontend dev</p>
+                    <p>name:{this.props.name}</p>
+                    <p>age:{this.props.age}</p>
+                    </div>)
+
+            }
+        }
+
+        ReactDOM.render(<Hello name="leesure" age='14' />, document.getElementById("container"))
+    </script>
+    <!-- 
+        更多时候我们应该去使用无状态组件. 如果是有状态组件的话, 它会触发生命周期对应的函数
+        一旦触发生命周期函数, 他就会影响当前项目的运. 所以尽可能的情况下使用无状态组件.
+        除非当前组件不是很清晰是否要存储数据或者已经确定了要进行一些数据的存储和修改.那么这个
+        时候就选择有状态组件.
+     -->
+</body>
+
+</html>
