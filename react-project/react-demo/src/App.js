@@ -1,9 +1,15 @@
+
 import './App.css';
 // import Fzindex from './01fzprops/index';
 // import Zsindex from './02zsprops/index';
 // import Context from './03context/main'
 // import Button from './04lifecycle/button';
-import UseState from './05Hooks/useState';
+// import UseState from './05Hooks/useState';
+// import LearnUserEffect from './05Hooks/learnUserEffect';
+// import ClassClearInterval from './05Hooks/ClassClearInterval';
+// import FunctionClearInterval from './05Hooks/FunctionClearInterval'
+// import UseRefLearn from './05Hooks/UseRefLearn';
+import UseReducerLearn from './05Hooks/UseReducerLearn';
 
 function App() {
   return (
@@ -17,7 +23,12 @@ function App() {
       {/* <p>组件生命周期</p>
       <Button name="btn"/> */}
       <p>Hooks</p>
-      <UseState/>
+      {/* <UseState/> */}
+      {/* <LearnUserEffect/> */}
+      {/* <ClassClearInterval/> */}
+      {/* <FunctionClearInterval/> */}
+      {/* <UseRefLearn/> */}
+      <UseReducerLearn/>
     </div>
   );
 }
