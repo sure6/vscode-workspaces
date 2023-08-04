@@ -2,7 +2,8 @@ import './App.css';
 // import Fzindex from './01fzprops/index';
 // import Zsindex from './02zsprops/index';
 // import Context from './03context/main'
-import Button from './04lifecycle/button';
+// import Button from './04lifecycle/button';
+import UseState from './05Hooks/useState';
 
 function App() {
   return (
@@ -13,8 +14,10 @@ function App() {
       <Zsindex/> */}
       {/* <p>下面是使用context祖孙组件互相传值和props传值</p>
       <Context/> */}
-      <p>组件生命周期</p>
-      <Button name="btn"/>
+      {/* <p>组件生命周期</p>
+      <Button name="btn"/> */}
+      <p>Hooks</p>
+      <UseState/>
     </div>
   );
 }
