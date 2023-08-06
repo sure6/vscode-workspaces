@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Push.js</title>
+</head>
+
+<body>
+    <button id="demo-button">点击测试</button>
+    <!-- <script src="https://cdn.bootcss.com/push.js/1.0.5/push.js"></script> -->
+    <script>
+        var button = document.getElementById("demo-button");
+
+        button.addEventListener("click", () => {
+            Notification.requestPermission().then((permission) => {
+                console.log(permission);
+                if (permission == "granted") {
+                    const notification = new Notification("hello world", {
+                        body: "this is test",
+                        data: {
+                            name: "sure"
+                        }
+
+                    })
+                }
+            })
+
+        })
+    </script>
+</body>
+
+</html>
