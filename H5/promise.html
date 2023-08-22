@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>learn-promise</title>
+</head>
+
+<body>
+    <button type="button" id="btn">do</button>
+    <script>
+        //    document.getElementById('btn').addEventListener('click',(e)=>{
+        //     const reader = new FileReader();
+
+        //    }) 
+        //    const formData = new FormData();
+        //     console.log(formData);
+        // window.onload = function () {
+        //     // const s = new Date().getSeconds();
+        //     // console.log(s);
+
+        //     // setTimeout(function () {
+        //     //     // 输出 "2"，表示回调函数并没有在 500 毫秒之后立即执行
+        //     //     console.log("Ran after " + (new Date().getSeconds() - s) + " seconds");
+        //     // }, 500);
+
+        //     // while (true) {
+        //     //     if (new Date().getSeconds() - s >= 2) {
+        //     //         console.log("Good, looped for 2 seconds");
+        //     //         break;
+        //     //     }
+        //     // }
+
+        // }
+        // (function () {
+        //     console.log("这是开始");
+
+        //     setTimeout(function cb() {
+        //         console.log("这是来自第一个回调的消息");
+        //     });
+
+        //     console.log("这是一条消息");
+
+        //     setTimeout(function cb1() {
+        //         console.log("这是来自第二个回调的消息");
+        //     }, 0);
+
+        //     console.log("这是结束");
+        // })();
+        (function () {
+            new Promise((resolve, reject) => {
+                console.log("初始化");
+
+                resolve();
+            }).then(() => {
+                    throw new Error("有哪里不对了");
+
+                    console.log("执行「这个」");
+                })
+                .catch(() => {
+                    console.log("执行「那个」");
+                })
+                .then(() => {
+                    console.log("执行「这个」，无论前面发生了什么");
+                });
+        })();
+
+
+
+    </script>
+</body>
+
+</html>
