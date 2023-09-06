@@ -154,8 +154,8 @@
 
   <script type="module">
     // Import the functions you need from the SDKs you need
-    import "https://www.gstatic.com/firebasejs/8.2.1/firebase-app.js";
-    import "https://www.gstatic.com/firebasejs/8.2.1/firebase-messaging.js";
+    import "https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js";
+    import "https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -173,56 +173,87 @@
 
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
+    // const messaging = getMessaging(app);
+
+    // function requestPermission() {
+    //   console.log('Requesting permission...');
+    //   Notification.requestPermission().then((permission) => {
+    //   if (permission === 'granted') {
+    //     console.log('Notification permission granted.');
+    //   
+    //         }
+    //       })
+    //     }
+
+    //     requestPermission();
+
     const messaging = firebase.messaging();
-    messaging.requestPermission().then(function () {
+    messaging.requestPermission().then(() =>{
       console.log("GRANTED");
+      messaging.getToken({ vapidKey: 'BAJp4bIdgumHK1vEzWllDjFsQIJ317n5sX4bnJQykA9mlNEqgzkiD01obWg_tRZM8bGSrNSFSrPHLf0sogOv_Q8' }).then((currentToken) => {
+                if (currentToken) {
+                  console.log("🚀 ~ file: index.html:185 ~ getToken ~ currentToken:", currentToken)
+                  // Send the token to your server and update the UI if necessary
+                  // ...
+                } else {
+                  // Show permission request UI
+                  console.log('No registration token available. Request permission to generate one.');
+                  // ...
+                }
+              }).catch((err) => {
+                console.log('An error occurred while retrieving token. ', err);
+                // ...
+              });
       return messaging.getToken();
-    }).then(function (token) {
+    }).then(token => {
       console.log("🚀 ~ file: index.html:183 ~ token:", token)
-    }).catch(function (err) {
+    }).catch( err => {
       console.log('Error Occurred.' + err)
     });
 
-    messaging.onMessage(function (payload) {
+    messaging.onMessage( payload=> {
       console.log('onMessage: ', payload);
     });
 
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('./firebase-messaging-sw.js')
-        .then(function (registration) {
-          console.log('Registration successful, scope is:', registration.scope);
-        }).catch(function (err) {
-          console.log('Service worker registration failed, error:', err);
-        });
-    }
+    // if ('serviceWorker' in navigator) {
+    //   navigator.serviceWorker.register('./firebase-messaging-sw.js')
+    //     .then( registration=> {
+    //       console.log('Registration successful, scope is:', registration.scope);
+    //     }).catch( err=> {
+    //       console.log('Service worker registration failed, error:', err);
+    //     });
+    // }
     // messaging.setBackgroundMessageHandler(function (payload) {
     //   const title = "Hello World";
     //   const option = { body: payload.data.status }
     //   return self.registration.showNotification(title, option);
     // });
-    // messaging.getToken({ vapidKey: 'eWW4mzjex87ihj-QD4stPtkjR28fSbaj6RhHQjoggPU' }).then((currentToken) => {
-    //   if (currentToken) {
-    //     // Send the token to your server and update the UI if necessary
-    //     // ...
-    //     console.log(currentToken);
-    //     messaging.getMessaging().subscribeToTopic(currentToken, topic)
-    //       .then((response) => {
-    //         // See the MessagingTopicManagementResponse reference documentation
-    //         // for the contents of response.
-    //         console.log('Successfully subscribed to topic:', response);
-    //       })
-    //       .catch((error) => {
-    //         console.log('Error subscribing to topic:', error);
-    //       });
-    //   } else {
-    //     // Show permission request UI
-    //     console.log('No registration token available. Request permission to generate one.');
-    //     // ...
-    //   }
-    // }).catch((err) => {
-    //   console.log('An error occurred while retrieving token. ', err);
-    //   // ...
-    // });
+    
+
+
+    
+  // messaging.getToken({ vapidKey: 'eWW4mzjex87ihj-QD4stPtkjR28fSbaj6RhHQjoggPU' }).then((currentToken,payload) => {
+  //   if (currentToken) {
+  //     // Send the token to your server and update the UI if necessary
+  //     console.log(currentToken);
+      
+  //     messaging.getMessaging().subscribeToTopic(currentToken, topic).then((response) => {
+  //         // See the MessagingTopicManagementResponse reference documentation
+  //         // for the contents of response.
+  //         console.log('Successfully subscribed to topic:', response);
+  //       }).catch((error) => {
+  //         console.log('Error subscribing to topic:', error);
+  //       });
+  //   } else {
+  //     // Show permission request UI
+  //     console.log('No registration token available. Request permission to generate one.');
+  //     // ...
+  //   }
+  // }).catch((err) => {
+  //   console.log('An error occurred while retrieving token. ', err);
+  //   // ...
+  // });
+
 
   </script>
 </body>
