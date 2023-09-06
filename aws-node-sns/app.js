@@ -3,6 +3,8 @@ const os = require('os');
 const app = express();
 const dotenv = require("dotenv");
 dotenv.config();
+// const dotenv = require("dotenv");
+// dotenv.config();
 const AWS = require('aws-sdk');
 // Set region
 
@@ -12,8 +14,8 @@ AWS.config.update({
   region: process.env.AWS_REGION, 
 });
 
-// // Create promise and SNS service object
-// var createTopicPromise = new AWS.SNS({apiVersion: '2010-03-31'}).createTopic({Name: "myfoodchoice"}).promise();
+// Create promise and SNS service object
+// var createTopicPromise = new AWS.SNS({apiVersion: '2010-03-31'}).createTopic({Name: "TOPIC_NAME"}).promise();
 // // Handle promise's fulfilled/rejected states
 // createTopicPromise.then(
 //   function(data) {
@@ -70,29 +72,29 @@ AWS.config.update({
 //   else     console.log(data);           // successful response
 // });
 
-// var params = {
-//   Message:  JSON.stringify({"GCM": "{\"notification\": { \"body\": \"Sample message for Android or iOS endpoints\", \"title\":\"TitleTest\",\"image\":\"https://myfoodchoice-7f6a0.web.app/favicon.ico\" },\"data\":{\"time_to_live\": 3600,\"collapse_key\":\"deals\"}}"}), /* required */
-//   MessageAttributes: {
-//     'Message': {
-//       DataType: 'String', /* required */
-//       // BinaryValue: Buffer.from('...') || 'STRING_VALUE' /* Strings will be Base-64 encoded on your behalf */,
-//       StringValue: 'UTF8'
-//     },
-//     /* '<String>': ... */
-//   },
-//   // MessageDeduplicationId: 'STRING_VALUE',
-//   // MessageGroupId: 'STRING_VALUE',
-//   MessageStructure: 'json',
-//   // PhoneNumber: 'STRING_VALUE',
-//   // Subject: '123',
-//   TargetArn: 'arn:aws:sns:ap-southeast-2:229510500787:endpoint/GCM/myfoodchoice/acf4a595-e8e2-35a1-afa7-777fa4568e38',
-//   // TopicArn: 'STRING_VALUE'
-// };
+var params = {
+  Message:  JSON.stringify({"GCM": "{\"notification\": { \"body\": \"Sample message for Android or iOS endpoints\", \"title\":\"TitleTest\",\"image\":\"https://myfoodchoice-7f6a0.web.app/favicon.ico\" },\"data\":{\"time_to_live\": 3600,\"collapse_key\":\"deals\"}}"}), /* required */
+  MessageAttributes: {
+    'Message': {
+      DataType: 'String', /* required */
+      // BinaryValue: Buffer.from('...') || 'STRING_VALUE' /* Strings will be Base-64 encoded on your behalf */,
+      StringValue: 'UTF8'
+    },
+    /* '<String>': ... */
+  },
+  // MessageDeduplicationId: 'STRING_VALUE',
+  // MessageGroupId: 'STRING_VALUE',
+  MessageStructure: 'json',
+  // PhoneNumber: 'STRING_VALUE',
+  // Subject: '123',
+  TargetArn: 'arn:aws:sns:ap-southeast-2:229510500787:endpoint/GCM/myfoodchoice/acf4a595-e8e2-35a1-afa7-777fa4568e38',
+  // TopicArn: 'STRING_VALUE'
+};
 
-// new AWS.SNS({apiVersion: '2010-03-31'}).publish(params, function(err, data) {
-//   if (err) console.log(err, err.stack); // an error occurred
-//   else     console.log(data);           // successful response
-// });
+new AWS.SNS({apiVersion: '2010-03-31'}).publish(params, function(err, data) {
+  if (err) console.log(err, err.stack); // an error occurred
+  else     console.log(data);           // successful response
+});
 
 // 设置 public 为静态文件的存放文件夹
 app.use('/public', express.static('public'));
