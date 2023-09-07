@@ -16,13 +16,28 @@ importScripts("https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js");
   firebase.initializeApp(firebaseConfig);
   const messaging = firebase.messaging();
 
-  messaging.onBackgroundMessage(payload => {
-    console.log("Received background message ", payload);
+  // messaging.onBackgroundMessage(payload => {
+  //   console.log("Received background message ", payload);
  
-    // const notificationTitle = payload.notification.title;
-    // const notificationOptions = {
-    //   body: payload.notification.body,
-    // };
+  //   // const notificationTitle = payload.notification.title;
+  //   // const notificationOptions = {
+  //   //   body: payload.notification.body,
+  //   // };
  
-    // self.registration.showNotification(notificationTitle, notificationOptions);
-  });
+  //   // self.registration.showNotification(notificationTitle, notificationOptions);
+  // });
+
+//   self.addEventListener('push', function (e) {
+//     var data = e.data;
+//     if (e.data) {
+//         data = data.json();
+//         const notificationTitle = "payload.notification.title";
+//         const notificationOptions = {
+//       body:data,
+//     };
+//         self.registration.showNotification(notificationTitle, notificationOptions);        
+//     } 
+//     else {
+//         console.log('push没有任何数据');
+//     }
+// });
