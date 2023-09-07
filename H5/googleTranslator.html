@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            top: 0px !important;
+            min-height: 0px !important;
+        }
+
+        /* 删除鼠标移上就选中*/
+        .goog-text-highlight {
+            background-color: transparent !important;
+            -webkit-box-shadow: 0 0px 0px rgba(0, 0, 0, 0) !important;
+            -moz-box-shadow: 0 0px 0px rgba(0, 0, 0, 0) !important;
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0) !important;
+        }
+
+        /* 删除顶置功能栏 */
+        .goog-te-banner-frame {
+            display: none
+        }
+    </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <span>I love you</span>
+
+    <!-- 把button放在右下角，这个是可以随意修改的，你可以改成一个链接一个图片之类的 -->
+    <div id="google_translate_element" style="position:absolute;bottom:0px;right:10px;z-index:2000;opacity:0.7"></div>
+    <!-- <div id="google_translate_element" style="z-index: 2000;opacity: 0.7"></div> -->
+
+    <script src="https://translate.google.com/translate_a/element.js?cb=init"></script>
+    <script>
+        window.onload = function () {
+            googleTranslateElementInit();
+            
+            // delete google icon
+            var img1= $('.goog-te-gadget-icon')[0];
+            img1.style.display="none";
+           
+            // 删除鼠标移动上弹出翻译
+            // $('#goog-gt-tt').remove()
+
+            //获取浏览器语言
+            var localLanguage;
+            if (navigator.language) {
+                localLanguage = navigator.language;
+            } else {
+                localLanguage = navigator.browserLanguage;
+            }
+            console.log(localLanguage)
+            // reload 自动强制将网站代码转成英文
+            var isLanguage = GetCookie('googtrans');
+            // 初始化发现浏览器语言是英文的强制将页面文字转成英文
+            if (isLanguage == null && localLanguage == 'en') {
+
+                // 设置cookie  /zh-CN/en  中文转换英文
+                SetCookie("googtrans", '/zh-CN/en', 3, "/", window.location.host, false);
+                var hrefarr = window.location.host.split('.');
+                // 设置cookie
+                var domain = "." + hrefarr[1] + '.' + hrefarr[2];
+                SetCookie("googtrans", '/zh-CN/en', 3, "/", domain, false);
+                $('.goog-te-combo').val('en');
+                // reload强制转成英文
+                window.location = '#googtrans(en|en)';
+                location.reload();
+
+            }
+
+            // 设置cookie
+            function SetCookie(a, c, b, d, e, g) {
+                var f = new Date;
+                f.setTime(f.getTime() + b * 86400);
+                b == null || f.toGMTString();
+                document.cookie = a + "=" + escape(c) + (d == null ? "" : ";path=" + d) + (e == null ? "" : ";domain=" + e) + (g == true ? ";secure" : "")
+            }
+
+            // 获取cookie
+            function GetCookie(a) {
+                var c = null,
+                    b = document.cookie + ";",
+                    d = a + "=",
+                    a = b.indexOf(d);
+                a != -1 && (a += d.length, c = b.indexOf(";", a), c = unescape(b.substring(a, c)));
+                return c
+            }
+
+            function contains(array, obj) {
+                var i = a.length;
+                while (i--) {
+                    if (a[i] === obj) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+           
+        }
+
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {
+                    //这个参数不起作用，看文章底部更新，翻译面板的语言
+                    // pageLanguage: 'en',
+                    //这个是你需要翻译的语言，比如你只需要翻译成越南和英语，这里就只写en,vi
+                    // includedLanguages: 'en,zh-CN,hr,cs,da,nl,fr,de,el,iw,hu,ga,it,ja,ko,pt,ro,ru,sr,es,th,vi,zh-TW',
+                    includedLanguages: 'en,zh-CN,zh-TW',
+                    //选择语言的样式，这个是面板，还有下拉框的样式，具体的记不到了，找不到api~~ VERTICAL/SIMPLE
+                    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+                    //自动显示翻译横幅，就是翻译后顶部出现的那个，有点丑，这个属性没有用的话，请看文章底部的其他方法
+                    autoDisplay: false,
+                    //还有些其他参数，由于原插件不再维护，找不到详细api了，将就了，实在不行直接上dom操作
+                },
+                'google_translate_element'//触发按钮的id
+            );
+
+        }
+
+    </script>
+
+</body>
+
+</html>
