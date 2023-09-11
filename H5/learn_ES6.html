@@ -1,26 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-        var studentObj={
+        var studentObj = {
             name: "Jam Jack",
-            age:19,
+            age: 19,
             gender: "male",
-            studentNum:"0324232",
+            studentNum: "0324232",
         }
 
-        var subjectObj={
+        var subjectObj = {
             name: "ISIT912",
             type: "CS",
-            gender:"gender"
-        }   
-        console.log(studentObj?.[subjectObj.type]);
-        
+            gender: "gender"
+        }
+        // console.log(studentObj?.[subjectObj.type]);
+
+    </script>
+
+    <script>
+        function checkTime(params) {
+            try {
+                // get mysql time
+                const mysqlDate = new Date(params);
+                console.log("🚀 ~ file: learn_ES6.html:33 ~ checkTime ~ mysqlDate:", mysqlDate)
+                
+                // get current time
+                const now = new Date();
+                console.log("🚀 ~ file: learn_ES6.html:37 ~ checkTime ~ now:", now)
+                // This is tolerance between +/- to current time in minutes
+                const tolerance = 4;
+
+                const nowTime = now.getHours() * 60 + now.getMinutes();
+                console.log("🚀 ~ file: learn_ES6.html:42 ~ checkTime ~ nowTime:", nowTime)
+                const mysqlTime = mysqlDate.getHours() * 60 + mysqlDate.getMinutes();
+                console.log("🚀 ~ file: learn_ES6.html:44 ~ checkTime ~ mysqlTime:", mysqlTime)
+
+                const timeDifference = Math.abs(nowTime - mysqlTime);
+                console.log("🚀 ~ file: learn_ES6.html:47 ~ checkTime ~ timeDifference:", timeDifference)
+
+                if (timeDifference <= tolerance) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } catch (err) {
+                console.log(err);
+            }
+        }
+
+
+        // Set the desired time zone
+        const timeZone = "Australia/Sydney";
+        // Create a new Date object with the desired time in the specified time zone
+        const sixPMAustralia = new Date()
+        sixPMAustralia.setHours(18, 0, 0);
+        sixPMAustralia.toLocaleTimeString("en-AU", { timeZone });
+        console.log("🚀 ~ file: learn_ES6.html:58 ~ sixPMAustralia:", sixPMAustralia)
+        // checkTime(sixPMAustralia)
+        console.log("🚀 ~ file: learn_ES6.html:62 ~ checkTime(sixPMAustralia):", checkTime(sixPMAustralia))
     </script>
 </body>
+
 </html>
