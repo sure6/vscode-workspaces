@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <video autoplay playsinline id="video"></video>
+    <div id="canvas"></div>
+    <script>
+        if (navigator.mediaDevices.getUserMedia) {
+            console.log('getUserMedia is supported');
+        } else {
+            console.log('getUserMedia is not supported');
+        }
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                var video = document.querySelector('video');
+                video.srcObject = stream;
+                video.play();
+            })
+            .catch(function (err) {
+                console.log(err.name + ': ' + err.message);
+            });
+
+        
+        var video = document.getElementById('video');
+        var canvas = document.getElementById('canvas');
+        var context = canvas.getContext('2d');
+
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+
+        context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+        var dataURL = canvas.toDataURL('image/png');
+    </script>
+</body>
+
+</html>
