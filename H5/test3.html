@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- nePlayer CSS -->
+    <link href="http://nos.netease.com/vod163/nep.min.css" rel="stylesheet">
+</head>
+<body>
+        <video id="my-video" class="video-js" controls poster="http://nos.netease.com/vod163/poster.png" preload="auto" width="640" height="360" data-setup='{}'>
+        </video>
+        <!-- nePlayer Js -->
+<script src="http://nos.netease.com/vod163/nep.min.js"></script>
+<script>
+    // 点击按钮设置播放地址
+neplayer('my-video').setDataSource({src:"http://pullhlsa411fb25.live.126.net/live/b28bcf83a19d475e86042e667e78722c/playlist.m3u8",type:"video/mp4"});
+ 
+ // 点击按钮设置播放地址并播放
+ myPlayer = neplayer('my-video');
+ myPlayer.setDataSource({src:"http://pullhlsa411fb25.live.126.net/live/b28bcf83a19d475e86042e667e78722c/playlist.m3u8",type:"video/mp4"});
+ myPlayer.play();
+</script>
+
+</body>
+</html>

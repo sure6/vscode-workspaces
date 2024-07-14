@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <script>
+        function showPosition(position) {
+            var latlon = position.coords.latitude + ',' + position.coords.longitude;
+
+            //baidu
+            var url = '<a href="http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&callback=renderReverse&location='+latlon+'&output=json&pois=0">http://api.map.baidu.com/geocoder/v2/?ak=C93b5178d7a8ebdb830b9b557abce78b&callback=renderReverse&location='+latlon+'&output=json&pois=0</a>'; 
+                $.ajax({
+                    type: "GET",
+                    dataType: "jsonp",
+                    url: url,
+                    beforeSend: function () {
+                        $("#baidu_geo").html('正在定位...');
+                    },
+                    success: function (json) {
+                        if (json.status == 0) {
+                            $("#baidu_geo").html(json.result.formatted_address);
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        $("#baidu_geo").html(latlon + "地址位置获取失败");
+                    }
+                });
+        };
+        showPosition(position);
+    </script>
+    <h1 id="baidu_geo"></h1>
+
+</body>
+
+</html>
