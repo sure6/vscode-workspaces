@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+<meta  charset="utf-8">
+<link href="dist/neplayer.min.css" rel="stylesheet">
+<script src="dist/neplayer.min.js"></script>
+<script>neplayer.setSWF('./video-js.swf')</script>
+
+<title>www.zwq.com</title>
+</head>
+<body>
+<video id="my-video1" class="video-js vjs-big-play-centered " webkit-playsinline="true" x-webkit-airplay="true" playsinline="true" preload="auto" x5-video-player-type="h5" x5-video-player-fullscreen="true"  poster="kitty.jpg" > </video>
+<script> 
+
+
+var myPlayer = neplayer("my-video1", {
+controls: true,
+ //autoplay:"true",
+ "height":640,
+ "width":480,
+ controlBar: {								// controlBar: Container of main controls.
+				playToggle: true,						// playToggle: Button to toggle between play and pause. 播放暂停按钮
+				volumeMenuButton: true,					// volumeMenuButton: A Component to contain the MuteToggle and VolumeControl so that they can work together.
+				currentTimeDisplay: false,				// currentTimeDisplay: Displays the current time. (hidden by default)
+				timeDivider: false,						// timeDivider: The separator between the current time and duration. Can be hidden if it's not needed in the design. (hidden by default)
+				durationDisplay: false	},
+				remainingTimeDisplay: false,
+ streamTimeoutTime: 10 * 1000,
+  }, function(){ 
+  
+ myPlayer.setDataSource({
+  type: "video/mp4",
+  src: "http://www.example.com/path/to/video.mp4"
+});
+
+ });
+
+myPlayer.onError(function(err){
+    console.log(err.errCode);
+    console.log(err.errMsg);
+});
+ </script>
+</body>
+</html>
